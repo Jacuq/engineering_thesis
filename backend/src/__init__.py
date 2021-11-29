@@ -2,6 +2,8 @@ from flask import Flask
 from flask_cors import CORS
 
 
+# RUN: python -m pytest --cov=src
+
 def create_app():
     app = Flask(__name__)
     CORS(app)

@@ -1,4 +1,4 @@
 backend/.idea/*
-backend/__pycache__/*
-backend/src/__pycache/*
+backend/*/__pycache__/*
+backend/*/*/__pycache__/*
 backend/.coverage

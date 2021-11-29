@@ -1,9 +1,7 @@
-import random
 
 import flask
 from flask import Blueprint, jsonify, request
-from .scales_calc import find_scale, find_chord, find_interval, scales_patterns, chords_patterns, sounds_mapping, sound_from_val
-from random import Random
+from .notes_calc import find_scale, find_chord, find_interval, notes_mapping, get_random
 
 theory_api = Blueprint('theory_api', __name__, url_prefix='/theory')
 
@@ -15,7 +13,7 @@ def cast_root(root: str) -> str:
     root = root.upper()
     if len(root) == 2 and root[1] == 'S':
         root = root[0] + '#'
-    if root not in sounds_mapping:
+    if root not in notes_mapping:
         return None
     return root
 
@@ -60,17 +58,7 @@ def get_obj(root: str, name: str, obj_type: str) -> flask.Response:
 
 @theory_api.route('/random/<obj_type>')
 def get_random_obj(obj_type: str):
-    random_note = random.randint(0, 11)
-    root = sound_from_val(random_note)
-    print(f"randroot: {root}")
-    if obj_type == 'chord':
-        chord = random.choice(list(chords_patterns.keys()))
-        obj = find_chord(root, chord)
-    elif obj_type == 'scale':
-        scale = random.choice(list(scales_patterns.keys()))
-        obj = find_scale(root, scale)
-    elif obj_type == 'interval':
-        pass
-    else:
-        return wrong_request("Incorrect obj_type in request")
+    obj = get_random(obj_type)
+    if obj is None:
+        return wrong_request("Wrong input for get_random")
     return jsonify(obj)
