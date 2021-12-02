@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const API_URL = 'http://localhost:5000'
+export const API_URL = 'http://localhost:5000/theory'
 
 /*
  * For easier debugging in development mode, you can import the following file

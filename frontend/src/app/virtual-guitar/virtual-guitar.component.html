@@ -1,0 +1,14 @@
+
+<mat-grid-list cols="14" *ngFor="let string of stringsArr">
+    <mat-grid-tile *ngFor="let note of string">
+        <button *ngIf="currentScale && currentScale.includes(note); else else1" style="color:red" #noteButton (click)="onClick(string, note)">{{note}}</button>
+        <ng-template #else1>
+            <button *ngIf="currentChord && currentChord.includes(note); else else2" style="color:red" #noteButton (click)="onClick(string, note)">{{note}}</button>
+        </ng-template>
+        <ng-template #else2>
+            <button *ngIf="currentInterval && currentInterval.includes(note); else elseBlock" style="color:red" #noteButton (click)="onClick(string, note)">{{note}}</button>
+        </ng-template>
+        <ng-template #elseBlock><button #noteButton style="color:black" (click)="onClick(string, note)">{{note}}</button>
+        </ng-template>
+    </mat-grid-tile>
+</mat-grid-list>

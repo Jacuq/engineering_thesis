@@ -1,0 +1,47 @@
+<div style="width:30%; margin-left: 50px; margin-top: 50px;">
+    <form #apiRequest="ngForm" (ngSubmit)="ngPost(apiRequest.value, $event)">
+    <mat-form-field appearance="fill">
+        <mat-select name="note" ngModel>
+            <mat-label>Choose root note</mat-label>
+            <mat-option *ngFor="let note of notes" value={{note}}>{{note}}</mat-option>    
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-select name="req" (selectionChange)="onReqChange($event)" ngModel>
+            <mat-label>Choose type of request</mat-label>
+            <mat-option *ngFor="let t of types" value={{t}}>{{t}}</mat-option>    
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field style="visibility: hidden;" appearance="fill" *ngIf="req === 'default'">
+        <mat-select>
+            <mat-label>Choose {{req}} name</mat-label>
+            <mat-option *ngFor="let scale of scalesNames" value={{scale}}>{{scale}}</mat-option>    
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="req === 'scale'">
+        <mat-select name="req_name" ngModel>
+            <mat-label>Choose {{req}} name</mat-label>
+            <mat-option *ngFor="let scale of scalesNames" value={{scale}}>{{scale}}</mat-option>    
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="req === 'chord'">
+        <mat-select name="req_name" ngModel>
+            <mat-label>Choose {{req}} name</mat-label>
+            <mat-option *ngFor="let chord of chordsNames" value={{chord}}>{{chord}}</mat-option>    
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="req === 'interval'">
+        <mat-select name="req_name" ngModel>
+            <mat-label>Choose {{req}} name</mat-label>
+            <mat-option *ngFor="let interval of intervalsNames" value={{interval}}>{{interval}}</mat-option>    
+        </mat-select>
+    </mat-form-field>
+    <button type="submit" >Calculate</button>
+    </form>
+
+</div>

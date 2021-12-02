@@ -1,0 +1,11 @@
+<p>guitar-page works!</p>
+
+
+<app-api-request-selector (requestSelectedEvent)="requestSelected($event)" ></app-api-request-selector>
+
+<div style="width: 1000px;">
+
+<app-virtual-guitar [currentScale]="currentScale" 
+    [currentChord]="currentChord" [currentInterval]="currentInterval"></app-virtual-guitar>
+
+</div>
