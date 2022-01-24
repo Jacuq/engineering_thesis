@@ -1,11 +1,30 @@
-<p>guitar-page works!</p>
-
-
-<app-api-request-selector (requestSelectedEvent)="requestSelected($event)" ></app-api-request-selector>
-
-<div style="width: 1000px;">
-
-<app-virtual-guitar [currentScale]="currentScale" 
-    [currentChord]="currentChord" [currentInterval]="currentInterval"></app-virtual-guitar>
-
+<div style="width: 1000px; margin-left: 10%;">
+    
+    <div>
+    
+        <app-api-request-selector (requestSelectedEvent)="requestSelected($event)" 
+        style="margin-bottom: 1%;"></app-api-request-selector>
+        
+        <mat-card style="width: 200px; margin: 1% 0; background-color: azure;">
+            <mat-card-title style="margin-left: 30%;">Volume</mat-card-title>
+            <mat-card-content>
+        
+            <mat-slider min="0" max="1" step="0.05" value="1" style="margin-left: 15%;"
+            [(ngModel)]="currentVolume"
+            thumbLabel
+            [displayWith]="formatLabel"
+            tickInterval="1000"
+            aria-label="units"></mat-slider>
+            </mat-card-content>
+        </mat-card>
+    </div>  
+    <app-virtual-guitar [currentScale]="currentScale" 
+            [currentChord]="currentChord" [currentInterval]="currentInterval"
+            [guitarType]="guitarType" [currentVolume]="currentVolume"></app-virtual-guitar>
+    
 </div>
+
+
+
+
+  

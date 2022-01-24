@@ -1,0 +1,28 @@
+
+ <mat-card style="background-color: azure; margin-left: 10%; width: 80%;">
+    <mat-card-title style="margin-bottom: 20px;">What chord is this?</mat-card-title>
+    <h2>Current score: {{score}}</h2>
+    <mat-card-content>
+        <h3>Notes in chord: {{notesInChord}}</h3>
+        <button mat-raised-button style="margin: 1% 1%;" (click)="reset()">Restart</button>
+        <form #theoryQuiz="ngForm" (ngSubmit)="ngPost(theoryQuiz.value, $event)">
+
+        <mat-form-field appearance="fill">
+            <mat-select name="note" ngModel>
+                <mat-label>Choose root note</mat-label>
+                <mat-option *ngFor="let note of notes" value={{note}}>{{note}}</mat-option>    
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill" style="margin: 0 1%">
+            <mat-select name="chord" ngModel>
+                <mat-label>Choose chord name</mat-label>
+                <mat-option *ngFor="let chord of chordsNames" value={{chord}}>{{chord}}</mat-option>    
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button>Submit answer</button>
+        </form>
+
+    </mat-card-content>
+</mat-card>

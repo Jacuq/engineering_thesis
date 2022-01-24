@@ -1,8 +1,9 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApiRequestSelectorComponent } from '../api-request-selector/api-request-selector.component';
+import { AudioPlayerService } from '../audio-player/audio-player.service';
 import { TheoryApiService } from '../theory-api/theory-api.service';
 import { VirtualGuitarComponent } from '../virtual-guitar/virtual-guitar.component';
-
 
 @Component({
   selector: 'app-guitar-page',
@@ -14,18 +15,29 @@ export class GuitarPageComponent implements OnInit {
   virtGuitar;
   apiRequestSelector;
   theoryApi;
+  audio;
   
+  route: ActivatedRoute;
+  guitarType: string;
   currentScale = null;
   currentInterval = null;
   currentChord = null;
+  currentVolume = 1;
 
   //guitar: VirtualGuitarComponent,
   //selector: ApiRequestSelectorComponent 
-  constructor(api: TheoryApiService) { 
+  constructor(api: TheoryApiService, audio: AudioPlayerService, route: ActivatedRoute) { 
     this.theoryApi = api;
+    this.route = route;
   }
 
   ngOnInit(): void {
+    this.guitarType = this.route.snapshot.url[0]['path'];
+  }
+
+  formatLabel(value: number)
+  {
+    return Math.round(value*100) + "%";
   }
 
   requestSelected(event){
@@ -40,6 +52,7 @@ export class GuitarPageComponent implements OnInit {
     let name: string = event.req_name;
     let split: number = name.indexOf(' ');
     name = name.toLowerCase();
+    //TODO: substr deprecated name = name.substr(0, 0+split) + '_' + name.substr(split+1, length-split+1); albo cos takiego
     name = name.substr(0, split) + '_' + name.substr(split+1);
 
     let result;

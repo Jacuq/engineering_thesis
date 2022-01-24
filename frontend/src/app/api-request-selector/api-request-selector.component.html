@@ -1,5 +1,11 @@
-<div style="width:30%; margin-left: 50px; margin-top: 50px;">
+<div style="width:100%;">
+    
+    <mat-card style="background-color: azure;">
+        <mat-card-title style="margin-bottom: 20px;">Choose a request</mat-card-title>
+        <mat-card-content>
+            
     <form #apiRequest="ngForm" (ngSubmit)="ngPost(apiRequest.value, $event)">
+
     <mat-form-field appearance="fill">
         <mat-select name="note" ngModel>
             <mat-label>Choose root note</mat-label>
@@ -44,4 +50,6 @@
     <button type="submit" >Calculate</button>
     </form>
 
+    </mat-card-content>
+    </mat-card>
 </div>

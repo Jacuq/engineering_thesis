@@ -1,0 +1,23 @@
+<mat-card style="background-color: azure; width: 60%; margin-left: 20%;">
+    <mat-card-title style="margin-bottom: 20px; margin-left: 30%;">Ear training</mat-card-title>
+    <mat-card-content style="margin-left: 20%;">
+        
+
+    <h2>Current score: {{currentScore}}</h2>
+    <button mat-raised-button (click)="playLast()" style="margin: 5px">Play sound</button>
+    <button mat-raised-button (click)="reset()" style="margin: 5px">Reset</button>
+
+<form #earTraining="ngForm" (ngSubmit)="ngPost(earTraining.value, $event)">
+
+    <label for="answer">Your answer: </label>
+    <mat-form-field appearance="fill">
+        <mat-select name="note" ngModel>
+            <mat-label>Choose root note</mat-label>
+            <mat-option *ngFor="let note of notes" value={{note}}>{{note}}</mat-option>    
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button type="submit" style="margin: 5px;">Check answer</button>
+    
+</form>
+</mat-card-content>
+</mat-card>
