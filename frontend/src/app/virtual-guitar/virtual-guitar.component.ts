@@ -23,6 +23,10 @@ export class VirtualGuitarComponent implements OnInit {
   notes = ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'];
   values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   
+  hoverable = true;
+  toggleButtonStrings = ["Show all notes", "Show notes on hover"];
+  toggleButtonText = this.toggleButtonStrings[0];
+
   notesMap;
   reveresedNotesMap;
   stringsMap;
@@ -80,6 +84,24 @@ export class VirtualGuitarComponent implements OnInit {
     if(fret>11)
       note = note + "_H"
     this.audio.playNote(stringName, note, this.currentVolume);
+  }
+
+
+  isSelected(note){
+    if(this.currentScale && this.currentScale.includes(note))
+      return true;
+    if(this.currentChord && this.currentChord.includes(note))
+      return true;
+    if(this.currentInterval && this.currentInterval.includes(note))
+      return true;
+    
+    return false;
+  }
+
+
+  toggleAll(){
+    this.hoverable = !this.hoverable;
+    this.toggleButtonText = this.hoverable ? this.toggleButtonStrings[0] : this.toggleButtonStrings[1];
   }
 
 

@@ -1,0 +1,51 @@
+.E{
+    background-image: url('../../assets/imgs/strings/E.png');
+}
+
+.A{
+    background-image: url('../../assets/imgs/strings/A.png');
+}
+
+.D{
+    background-image: url('../../assets/imgs/strings/D.png');
+}
+
+.G{
+    background-image: url('../../assets/imgs/strings/G.png');
+}
+
+.B{
+    background-image: url('../../assets/imgs/strings/B.png');
+}
+
+.E_H{
+    background-image: url('../../assets/imgs/strings/E_H.png');
+}
+
+
+.hoverableFret{
+    opacity: 0;
+}
+
+.hoverableFret:hover{
+    opacity: 1;
+}
+
+.fret{
+    opacity: 1;
+}
+
+
+.selectedFret{
+    opacity: 1 !important;
+    color: red;
+}
+
+.guitar p{
+    text-align:center;
+    vertical-align: text-bottom;
+    font-size: large;
+    font-weight: bold;
+    user-select: none;
+    -webkit-user-select: none;
+}

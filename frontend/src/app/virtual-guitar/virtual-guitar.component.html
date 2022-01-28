@@ -1,19 +1,21 @@
 <mat-card style="background-color: azure;">
-    <mat-card-content>
-    <mat-grid-list cols="14" *ngFor="let string of stringsArr">
-        
-        <mat-grid-tile *ngFor="let note of string; index as fret">
-            <button *ngIf="currentScale && currentScale.includes(note); else else1" style="color:red" #noteButton (click)="onClick(string, note, fret)">{{note}}</button>
-            <ng-template #else1>
-                <button *ngIf="currentChord && currentChord.includes(note); else else2" style="color:red" #noteButton (click)="onClick(string, note, fret)">{{note}}</button>
-            </ng-template>
-            <ng-template #else2>
-                <button *ngIf="currentInterval && currentInterval.includes(note); else elseBlock" style="color:red" #noteButton (click)="onClick(string, note, fret)">{{note}}</button>
-            </ng-template>
-            <ng-template #elseBlock><button #noteButton style="color:black" (click)="onClick(string, note, fret)">{{note}}</button>
-            </ng-template>
+    <mat-card-content >
+        <button (click)="toggleAll()">{{toggleButtonText}}</button>
+    <mat-grid-list cols="14" *ngFor="let string of stringsArr; index as i;" [ngClass]="{
+        'E': i==3 && stringsCount==4 || i==5 && stringsCount==6,
+        'A': i==2 && stringsCount==4 || i==4 && stringsCount==6,
+        'D': i==1 && stringsCount==4 || i==3 && stringsCount==6,
+        'G': i==0 && stringsCount==4 || i==2 && stringsCount==6,
+        'B': i==1 && stringsCount==6,
+        'E_H': i==0 && stringsCount==6
+    }">
+    
+    <mat-grid-tile *ngFor="let note of string; index as fret" (click)="onClick(string, note, fret)" 
+            [ngClass]="isSelected(note) ? 'selectedFret' : hoverable ? 'hoverableFret' : 'fret' " class="guitar" #noteButton>
+            <p>
+            {{note}}
+            </p>
         </mat-grid-tile>
-
     </mat-grid-list>
 
 </mat-card-content>
