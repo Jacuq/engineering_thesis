@@ -50,10 +50,14 @@ export class GuitarPageComponent implements OnInit {
     let requestType = event.req;
     //name (with space isntead of _)
     let name: string = event.req_name;
-    let split: number = name.indexOf(' ');
     name = name.toLowerCase();
+    if(name.includes(' ')){
+      let split: number = name.indexOf(' ');
+    
     //TODO: substr deprecated name = name.substr(0, 0+split) + '_' + name.substr(split+1, length-split+1); albo cos takiego
     name = name.substr(0, split) + '_' + name.substr(split+1);
+    }
+    
 
     let result;
     switch(requestType){

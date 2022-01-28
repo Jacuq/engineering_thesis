@@ -19,6 +19,7 @@ export class TheoryApiService {
     }
 
     getScale(rootNote: string, name: string): Observable<Scale[]> {
+        console.log("Get scale: ", name);
         return this.http
         .get<Scale[]>(`${API_URL}/scale/${rootNote}/${name}`).pipe(
             tap(_ => console.log('fetched')),

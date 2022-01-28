@@ -1,6 +1,6 @@
 <mat-card style="background-color: azure;">
     <mat-card-content >
-        <button (click)="toggleAll()">{{toggleButtonText}}</button>
+        <button (click)="toggleAll()">{{toggleButtonText}}</button> <br> <br>
     <mat-grid-list cols="14" *ngFor="let string of stringsArr; index as i;" [ngClass]="{
         'E': i==3 && stringsCount==4 || i==5 && stringsCount==6,
         'A': i==2 && stringsCount==4 || i==4 && stringsCount==6,

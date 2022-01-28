@@ -33,6 +33,7 @@ def hello_world():
 @theory_api.route('/<obj_type>/<root>/<name>', methods=['GET'])
 def get_obj(root: str, name: str, obj_type: str) -> flask.Response:
     # get root from link, check if it's a legal note and cast to proper format
+    print(f"root:{root}; name:{name}; obj_type:{obj_type}")
     root = cast_root(root)
     if root is None:
         return wrong_request("Incorrect root note")

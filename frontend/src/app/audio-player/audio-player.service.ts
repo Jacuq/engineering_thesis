@@ -6,17 +6,17 @@ export class AudioPlayerService {
 
   soundsType = "acoustic"
   basePath = "../../assets/samples/"
-  samplesDirectory;
+  samplesDirectory = this.basePath + "acoustic/my_samples/";
 
   constructor() { }
 
 
-  playNote(string:string, note:string, volume:number)
+  playNote(guitar_string:string, note:string, volume:number)
   {
     let audio = new Audio();
     if(note.length > 1 && note[1] == '#')
       note = note[0] + 's' + note.substring(2);
-    audio.src = this.samplesDirectory + string + "/" + note + ".wav";
+    audio.src = this.samplesDirectory + guitar_string + "/" + note + ".wav";
     audio.volume = volume
     audio.load();
     audio.play();

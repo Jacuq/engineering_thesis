@@ -10,7 +10,8 @@ export class TheoryQuizComponent implements OnInit {
 
   theoryApi: TheoryApiService;
   notes = ['E', 'F', 'F#',' G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'];
-  chordsNames = ['Minor Triad', 'Major Triad'];
+  chordsNames = ['Minor Triad', 'Major Triad','Augmented Triad', 'Diminished Triad',
+  'Seventh','Minor Seventh', 'Major Seventh', 'Diminished Seventh'];
   
   currentChord = null;
   currentNote = null;
