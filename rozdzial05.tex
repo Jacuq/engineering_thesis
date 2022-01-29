@@ -1,4 +1,4 @@
-\chapter{Implementacja aplikacji}% 
+\chapter{Implementacja aplikacji} 
 
 \section{Implementacja Backendu}
 
@@ -29,9 +29,7 @@ Ka¿dy komponent sk³ada siê z 4 plików:
  \item [component-name.ts] - plik zawieraj¹cy konstruktor komponentu oraz skrypty napisane przez u¿ytkownika dla danego komponentu,
  \item [component-name.spec.ts] - plik zawieraj¹cy testy jednostkowe komponentu.
 \end{description}
-Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: serwis-name.ts oraz serwis-name.spec.ts. Pe³ni¹ one takie same role jak w wypadku komponentów - pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe.
-
-
+Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: service-name.ts oraz service-name.spec.ts. Pe³ni¹ one takie same role jak w wypadku komponentów - pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe.
 
 \begin{figure}[H]
  \centering
@@ -40,3 +38,85 @@ Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: serwis-name.ts oraz serwis-
  \label{fig:schemat_FE2}
 \end{figure}
 
+
+\subsection{Komunikacja z API}
+
+W celu komunikacji z API zaimplementowano serwis TheoryApiService oraz modele danych odpowiadaj¹ce tym z API, czyli klasy: Chord, Interval oraz Scale. Klasê Scale przedstawiono na listingu \ref{lst:TheoryModel}. Serwis s³u¿y do wysy³ania zapytañ HTTP na zadany adres i rzutuje otrzymane dane na rz¹dany typ. \\
+
+\begin{lstlisting}[caption={Klasa Scale wykorzystywana do zapytañ i przechowywania danych o skalach}, label={lst:TheoryModel}, language=JavaScript]
+ export class Scale {
+    constructor(
+        public name: string,
+        public notes: string[],
+    ) { }
+}
+\end{lstlisting}
+
+
+TheoryApiService wykorzystuje zmienn¹ œrodowiskow¹ API\_URL pod któr¹ przechowywany jest adres API, dziêki czemu mo¿na modyfikowaæ adres API bez ingerencji w kod. Zastosowanie zmiennych œrodowiskowych jest szczególnie istotne kiedy dochodzi do dystrybucji aplikacji - adresy API mog¹ siê zmieniaæ i nie powinno to powodowaæ potrzeby aktualizacji aplikacji. Przyk³adowe zapytanie do API z wykorzystaniem zmiennej œrodowiskowej mo¿na zobaczyæ na listingu \ref{lst:TheoryApiService}. 
+
+\begin{lstlisting}[caption={Metoda klasy TheoryApiService wysy³aj¹ca zapytanie o dŸwiêki akordu do API}, label={lst:TheoryApiService}, language=JavaScript]
+ getChord(rootNote: string, name: string): Observable<Chord[]> {
+        return this.http
+        .get<Chord[]>(`${API_URL}/chord/${rootNote}/${name}`).pipe(
+            tap(_ => console.log('fetched')),
+            catchError(TheoryApiService._handleError)
+        );
+    }
+\end{lstlisting}
+
+
+
+
+
+Takie rozwi¹zanie pozwala na wykorzystywanie tego samego serwisu w wielu komponentach poprzez wstrzykiwanie zale¿noœci. W Angularze proces ten odbywa siê poprzez oznaczenie klasy serwisu dekoratorem Injectable oraz zadeklarowanie odpowiedniej zale¿noœci w konstruktorze komponentu (serwis przekazuje siê jako argument konstruktora i przypisuje do odpowiedniego pola w klasie kompenentu). Przyk³ad wstrzykiwania zale¿noœci mo¿na zobaczyæ na listingu \ref{lst:DependencyInjection}, do kompenentu s¹ tam wstrzykiwane dwie zale¿noœci: TheoryApiService oraz ActivatedRoute. 
+
+\begin{lstlisting}[caption={Wstrzykiwanie zale¿noœci do komponentu GuitarPageComponent}, label={lst:DependencyInjection}, language=JavaScript]
+ constructor(api: TheoryApiService, route: ActivatedRoute) { 
+    this.theoryApi = api;
+    this.route = route;
+  }
+\end{lstlisting}
+
+
+\subsection{Podstrony z wirtualnymi instrumentami}
+Podstrony z wirtualnymi instrumentami zosta³y stworzone poprzez po³¹czenie ze sob¹ mniejszych komponentów: selektora zapytañ, suwaka reguluj¹cego g³oœnoœæ oraz wirtualnego instrumentu. \\
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{rys05/no_request_no_hover.png}
+\caption{Widok strony z gitar¹ basow¹ przed wykonaniem zapytania}
+\label{fig:noReqNoHov}
+\end{figure}
+
+
+W aplikacji zosta³y zaimplementowane dwa instrumenty: gitarê akustyczn¹ oraz gitarê basow¹. Bazuj¹ one na tym samym komponencie, poniewa¿ na poziomie abstrakcji, na którym operowano podczas implementacji róznica miêdzy nimi to tylko liczba strun.  \\
+
+Na ka¿dym z instrumentów po wybraniu zapytania podœwietlaj¹ siê odpowiednie dŸwiêki. Wynik przyk³adowego zapytania mo¿na zobaczyæ na rysunkach \ref{fig:reqNoHov}, \ref{fig:reqHov} i \ref{fig:reqAcoustic}. Wybrano zapytanie o skalê F Natural Major (F-dur). W sk³ad tej skali wchodz¹ dŸwiêki: F,G,A,A\#,C,D,E i te dŸwiêki s¹ zaznaczone kolorem czerwonym. \\
+Jeœli u¿ytkownika interesuj¹ tylko dŸwiêki nale¿¹ce do wybranego zapytania, mo¿e on wy³¹czyæ wyœwietlanie pozosta³ych dŸwiêków przyciskaj¹c guzik ``show notes on hover'' - powoduje on ukrycie wszystkich dŸwiêków, które nie nale¿¹ do aktualnego zapytania i wyœwietlanie ich dopiero po najechaniu kursorem. 
+
+\begin{figure}[h]   
+\centering
+\includegraphics[width=0.8\textwidth]{rys05/request_no_hover.png}
+\caption{Widok strony z gitar¹ basow¹ po wykonanu zapytania}
+\label{fig:reqNoHov}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{rys05/request_hover.png}
+\caption{Widok strony z gitar¹ basow¹ po wykonaniu zapytania i prze³¹czeniu opcji hover}
+\label{fig:reqHov}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{rys05/request_acoustic.png}
+\caption{Widok strony z gitar¹ akustyczn¹ po wykonaniu zapytania}
+\label{fig:reqAcoustic}
+\end{figure}
+
+
+
+\subsection{Trening s³uchu}
+
+\subsection{Quiz}
