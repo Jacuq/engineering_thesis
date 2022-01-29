@@ -1,30 +1,42 @@
 \chapter{Podsumowanie}
-\label{chap:podsumowanie}
-Podsumowanie jest miejscem, w którym nale¿y zamieœciæ syntetyczny opis tego, o czym jest dokument. W szczególnoœci w pracach dyplomowych w podsumowaniu powinno znaleŸæ siê jawnie podane stwierdzenie dotycz¹ce stopnia realizacji celu. Czyli powinny pojawiæ siê w niej akapity ze zdaniami typu: ,,Podczas realizacji pracy uda³o siê zrealizowaæ wszystkie postawione cele''. Ponadto powinna pojawiæ siê dyskusja na temat napotkanych przeszkód i sposobów ich pokonania, perspektyw dalszego rozwoju, mo¿liwych zastosowañ wyników pracy itp. 
 
-\section{Sekcja poziomu 1}% 
-Lorem ipsum dolor sit amet eleifend et, congue arcu. Morbi tellus sit amet, massa. Vivamus est id risus. Sed sit amet, libero. Aenean ac ipsum. Mauris vel lectus. 
+\section{Zrealizowane cele i za³o¿enia}
 
-Nam id nulla a adipiscing tortor, dictum ut, lobortis urna. Donec non dui. Cras tempus orci ipsum, molestie quis, lacinia varius nunc, rhoncus purus, consectetuer congue risus. 
+W ramach pracy postawiono nastêpuj¹ce cele: 
+\begin{itemize}
+ \item wybór technologii,
+ \item zaprojektowanie aplikacji webowej,
+ \item implementacjê aplikacji,
+ \item projekt i implementacjê testów aplikacji,
+ \item udokumentowanie procesu w pracy dyplomowej.
+\end{itemize}
+Wszystkie powy¿ej wymienione cele uda³o siê spe³niæ. \\
 
-\subsection{Sekcja poziomu 2}
-Lorem ipsum dolor sit amet eleifend et, congue arcu. Morbi tellus sit amet, massa. Vivamus est id risus. Sed sit amet, libero. Aenean ac ipsum. Mauris vel lectus. 
-\subsubsection{Sekcja poziomu 3}
-Lorem ipsum dolor sit amet eleifend et, congue arcu. Morbi tellus sit amet, massa. Vivamus est id risus. Sed sit amet, libero. Aenean ac ipsum. Mauris vel lectus. 
-\paragraph{Paragraf 4}
-Lorem ipsum dolor sit amet eleifend et, congue arcu. Morbi tellus sit amet, massa. Vivamus est id risus. Sed sit amet, libero. Aenean ac ipsum. Mauris vel lectus. 
-\section{Sekcja poziomu 1}% 
-Lorem ipsum dolor sit amet eleifend et, congue arcu. Morbi tellus sit amet, massa. Vivamus est id risus. Sed sit amet, libero. Aenean ac ipsum. Mauris vel lectus. 
-%\show\chapter
-%\show\section
-%\show\subsection
+W celu wyboru technologii zastosowano kryteria takie jak popularnoœæ danej technologii oraz jej dostosowanie do zadania. Przed zaprojektowaniem aplikacji dokonano analizy wymagañ funckjonalnych, niefunkcjonalnych oraz przypadków u¿ycia. \\
 
-%\showthe\secindent
-%\showthe\beforesecskip
-%\showthe\aftersecskip
-%\showthe\secheadstyle
-%\showthe\subsecindent
-%\showthe\beforesubsecskip
-%\showthe\aftersubsecskip
-%\showthe\subseccheadstyle
-%\showthe\parskip
+implementacja aplikacji skupia³a siê przede wszystkim na spe³nieniu wyznaczonych przypadków u¿ycia przedstawionych na rysunku \ref{fig:UseCase}. Uda³o siê zaimplementowaæ wszystkie zaprezentowane tam przypadki u¿ycia, jednak æwiczenia interaktywne stoj¹ na stosunkowo niskim poziomie - zaimplementowano tylko dwa rodzaje æwiczeñ. ¯adne z æwiczeñ nie korzysta z mikrofonu, co prawda nie by³o to wymogiem, ale na pewno by³oby to du¿o bardziej anga¿uj¹ce dla u¿ytkownika ni¿ wybór odpowiedzi z listy rozsuwanej. 
+
+\section{Dalszy rozwój aplikacji}
+
+Aplikacja ma du¿e mo¿liwoœci na dalszy rozwój. Szczególnie warte uwagi pomys³y to: konta u¿ytkowników, dodatkowe instrumenty, dodatkowe æwiczenia, u¿ywanie mikrofonu, lekcje.
+
+\subsection{Konta u¿ytkowników}
+
+Do aplikacji mo¿na dodaæ konta u¿ytkowników, które pozwala³aby na zachowywanie wyników z æwiczeñ pomiêdzy sesjami. Maj¹c zapisane wyniki z æwiczeñ mo¿naby nawet stworzyæ tablice wyników. Wraz z dodawaniem kolejnych æwiczeñ konta by³yby coraz bardziej u¿yteczne. Kolejne funkcjonalnoœci równie¿ mog³yby korzystaæ z tej funkcjonalnoœci, np. po dodaniu lekcji, konta pozwala³yby zapamiêtaæ lekcje, które u¿ytkownik ju¿ przejrza³.
+
+\subsection{Dodatkowe instrumenty}
+
+Ze wzglêdu na to jak stworzono podstronê z wirtualnym instrumentem i serwis do odtwarzania dŸwiêków stronê ³atwo wzbogaciæ o dodatkowe instrumenty, takie jak np. pianino. Oczywiœcie nie na ka¿dym instrumencie ³atwo zaprezentowaæ graficznie dŸwiêki, wiêc trzebaby rozwa¿yæ odpowiedni dobór instrumentów.
+
+\subsection{Dodatkowe æwiczenia}
+
+Dodatkowe æwiczenia mo¿na implementowaæ jako kolejne podstrony niezale¿nie od reszty treœci strony, wiêc aplikacja jest pod tym wzglêdem aplikacja jest rozszerzalna. Mo¿naby stworzyæ podobny quiz do tego z akordami, ale zawieraj¹cy tylko skale lub zupe³nie inne rodzaje æwiczeñ jak np. wybranie kolejnych dŸwiêków w zadanej skali. 
+
+\subsection{Wykorzystanie mikrofonu}
+
+Wykorzystanie mikrofonu otworzy³oby wiele mo¿liwoœci, np. æwiczenia w których odpowiedzi¹ jest zagranie odpowiedniego dŸwiêku, interaktywny stroik pokazuj¹cy czy dŸwiêk jest za niski czy za wysoki. 
+
+\subsection{Lekcje}
+
+Warto rozwa¿yæ podstronê która zawiera³aby krótkie lekcje teorii muzyki, które nastêpnie mo¿naby po³¹czyæ z interaktymi æwiczeniami. Tutaj mo¿na by³oby równie¿ wykorzystaæ funkcjonalnoœæ kont po ich implementacji do zapamiêtywania które lekcje u¿ytkownik ju¿ przejrza³, tworzenia notatek czy dyskusji o materiale zawartym w lekcji.
+

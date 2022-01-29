@@ -2,7 +2,103 @@
 
 \section{Implementacja Backendu}
 
+Schemat projektu aplikacji backendowej przedstawiono na rysunku \ref{fig:schemat_BE}. Najwa¿niejszymi modu³ami s¹ pliki notes\_calc.py i theory\_api.py - odpowiadaj¹ one kolejno za obliczanie dŸwiêków w danych akordach, skalach czy interwa³ach oraz za tworzenie endpointów aplikacji. \\
+Pliki chords.py, scales.py, intervals.py to pliki pomocnicze zawieraj¹ce definicje wzorców wykorzystowanych przez notes\_calc oraz listy wszystkich dostêpnych obiektów. \\
+Pliki testów jednostkowych znajduj¹ siê w katalogu tests. 
 
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.4\textwidth]{rys05/schemat_BE.png}
+ \caption{Schemat projektu aplikacji Frontendowej}
+ \label{fig:schemat_BE}
+\end{figure}
+
+\subsection{Endpointy}
+
+Endpointy deklarowane s¹ w sposób typowy dla frameworka Flask, czyli poprzez dekoratory funkcji opisuj¹ce œcie¿kê oraz dostêpne metody. Wszystkie endpointy zawarte w API zwracaj¹ obiekty JSON. 
+Elementy œcie¿ki zapisane jako ``<name>'' to parametry œcie¿ki - zmienne, które s¹ poŸniej wykorzystywane w celu uszczegó³awiania zapytania. W g³ównym endpoincie API, przedstawionym na listnigu \ref{lst:Endpoint}, œcie¿ka opisana jest trzema parametrami, z których ka¿dy coraz bardziej zawê¿a zapyanie. Pocz¹tkowo obszar poszukiwania odpowiedzi jest okreœlany przez obj\_type - wybierana jest jedna 3 kategorii: skala, interwa³ lub akord. Nastêpnie podawana jest nuta g³ówna, a na koñcu nazwa obiektu. 
+
+\begin{lstlisting}[caption={G³ówny endpoint stworzonego API}, label={lst:Endpoint}, language=Python]
+ @theory_api.route('/<obj_type>/<root>/<name>', methods=['GET'])
+def get_obj(root: str, name: str, obj_type: str) -> flask.Response:
+    # get root from link, check if it's a legal note and cast to proper format
+    print(f"root:{root}; name:{name}; obj_type:{obj_type}")
+    root = cast_root(root)
+    if root is None:
+        return wrong_request("Incorrect root note")
+
+    # try to find proper object, if there's no matching obj type - wrong request
+    obj = None
+    if obj_type == 'chord':
+        obj = find_chord(root, name)
+    elif obj_type == 'scale':
+        obj = find_scale(root, name)
+    elif obj_type == 'interval':
+        obj = find_interval(root, name)
+    else:
+        return wrong_request("Incorrect obj_type in request")
+
+    # obj type was correct, but interval wasn't found - wrong interval in request
+    if obj is None:
+        return wrong_request(f"Incorrect {obj_type} name")
+
+    # all went smooth - return requested sound
+    return jsonify(obj)
+\end{lstlisting}
+
+
+\subsection{Obliczanie dŸwiêków}
+
+W celu obliczania dŸwiêków wykorzystano nastêpuj¹ce za³o¿enia:
+\begin{itemize}
+ \item ka¿dy dŸwiêk ma wartoœæ liczbow¹ od 0 do 11, zaczynaj¹c od dŸwiêku 'E',
+ \item przez dŸwiêk rozumie siê równie¿ pó³tony,
+ \item oktawy to wielkoœci okresowe (po ostatnim dŸwiêku w oktawie nastêpuje powrót do pierwszego),
+ \item odleg³oœæ miêdzy pó³tonami wynosi 1 jednostkê.
+\end{itemize}
+
+Korzystaj¹c z takich za³o¿eñ wszystkie akordy, skale i interwa³y opisano za pomoc¹ odleg³oœci od poprzeniego dŸwiêku. Pierwszy dŸwiêk to zawsze nuta g³ówna, drugi dŸwiêk opisany jest odleg³oœci¹ od nuty g³ównej, trzeci dŸwiêk odleg³oœci¹ od drugiego dŸwiêku itd. \\
+
+\begin{lstlisting}[caption={Wzorce opisuj¹ce przyk³adowe akordy}, label={lst:chordsPatterns}, language=Python]
+ seventh_pattern = (4, 3, 3)
+ minor_seventh_pattern = (3, 4, 3)
+ major_seventh_pattern = (4, 3, 4)
+ diminished_seventh_pattern = (3, 3, 3)
+\end{lstlisting}
+
+
+Na podstawie opisanych za³o¿eñ oraz wzorców stworzono funkcje obliczaj¹ce dŸwiêki zawarte w skalach, akordach i interwa³ach na podstawie ich nazwy oraz nuty g³ównej. Na listingach \ref{lst:calcScale}, \ref{lst:calcChord} przedstawiono funkcje dla akordów oraz skal.
+
+\begin{lstlisting}[caption={Funkcja obliczaj¹ca dŸwiêki w skali}, label={lst:calcScale}, language=Python]
+ def find_scale(root: str, scale_name: str) -> list:
+    curr_sound = notes_mapping.get(root)
+    pattern = scales_patterns.get(scale_name)
+    if pattern is None:
+        return None
+    scale = [root]
+    for step in pattern:
+        curr_sound += step
+        sound = sound_from_val(curr_sound % 12)
+        scale.append(sound)
+    return scale
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Funkcja obliczaj¹ca dŸwiêki w akordzie}, label={lst:calcChord}, language=Python]
+ def find_chord(root: str, chord_name: str) -> list:
+    curr_sound = notes_mapping.get(root)
+    pattern = chords_patterns.get(chord_name)
+    if pattern is None:
+        return None
+    chord = [root]
+    for step in pattern:
+        curr_sound += step
+        sound = sound_from_val(curr_sound % 12)
+        chord.append(sound)
+    return chord
+\end{lstlisting}
+
+\section{Obserwacje i uwagi}
+Po zaimplementowaniu ca³oœci aplikacji, zauwa¿ono, ¿e obliczenia s¹ na tyle niewymagaj¹ce, ¿e mog³yby byæ wykonywane po stronie frontendu zamiast dodatkowego API. Warto jednak zauwa¿yæ, ¿e API mo¿na ³atwo rozwin¹æ o dodatkowe funkcjonalnoœci, takie jak np. po³¹czenie z baz¹ danych, co mog³oby okazaæ siê przydatne w wypadku rozwoju aplikacji o konta u¿ytkowników. 
 
 \section{Implementacja Frontendu}
 
@@ -228,3 +324,19 @@ Zaimplementowane pytania polegaj¹ na rozpoznawaniu losowo wybieranych akordów po
  \caption{Stan komponentu treningu s³uchu po udzieleniu poprawnej odpowiedzi}
 \label{fig:quiz2}
 \end{figure}
+
+\section{Testowanie aplikacji}
+
+\subsection{Lighthouse}
+
+Wtyczka lighthouse pozwala na przetestowanie aplikacji webowych bior¹c pod uwagê charakterystyczne dla nich cechy, takie jak czas do za³adowania czy optymalizacja pod k¹tem wyszukiwania strony przez silniki wyszukiwania. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{rys05/lighthouse.png}
+    \caption{Wyniki testu Lighthouse}
+    \label{fig:lighthouse}
+\end{figure}
+
+Aplikacja przesz³a testy z dobrymi wynikami. Jednym ze znalezionych przez wtyczkê problemów okaza³a siê optymalizacja pod k¹tem silników wyszukiwania - w celu poprawy nale¿a³oby przede wszystkim zwiêkszyæ iloœæ metadanych opisuj¹cych stronê. \\
+Kolejnym problemem jest wydajnoœæ aplikacji - tutaj informacja o wyniku <90 jest du¿o bardziej niepokoj¹ca, poniewa¿ wydajnoœæ bezpoœrednio wp³ywa na odczucia u¿ytkownika. W celu poprawienia wydajnoœci nale¿a³oby przede wszystkim przeanalizowaæ kod pod k¹tem funkcji, które mog¹ opóŸniaæ ³adowanie elementów strony. Nale¿y jednak pamiêtaæ, ¿e podczas testów zarówno frontend, backend jak i aplikacja testowa by³y uruchomione na tej samej maszynie, co mo¿e znacz¹co wp³ywaæ na wyniki testów wydajnoœciowych.
