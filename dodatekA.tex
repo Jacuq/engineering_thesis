@@ -1,3 +1,20 @@
-\chapter{Instrukcja wdro¿eniowa}
-Jeœli praca skoñczy³a siê wykonaniem jakiegoœ oprogramowania, to w dodatku powinna pojawiæ siê instrukcja wdro¿eniowa (o tym jak skompilowaæ/zainstalowaæ to oprogramowanie).
-Przyda³oby siê równie¿  krótkie how to (jak uruchomiæ system i coœ w nim zrobiæ -- zademonstrowane na jakimœ najprostszym przypadku u¿ycia). Mo¿na z tego zrobiæ osobny dodatek,
+\chapter{Instrukcja uruchomienia}
+Uruchomienie systemu opiera siê na uruchomieniu dwóch mniejszych aplikacji: aplikacji backendowej napisanej w jêzyku Python oraz Frontendowej napisanej w jêzyku TypeScript.
+
+\section{Uruchamianie backendu}
+\begin{enumerate}
+ \item W katalogu backend uruchomiæ konsolê Windows.
+ \item Zainstalowaæ potrzebne zale¿noœci komend¹: pip install -r requirements.txt.
+ \item Wpisaæ komendê: SET FLASK\_APP=src.
+ \item Wpisaæ komendê: python -m flask run.
+ \item Aplikacja jest uruchomiona a¿ do wy³¹czenia konsoli lub przerwania dzia³ania (np. za pomoc¹ skrótu CTRL+C).
+\end{enumerate}
+
+
+\section{Uruchamianie frontendu}
+\begin{enumerate}
+ \item Zainstalowaæ NPM.
+ \item Za pomoc¹ NPM Zainstalowaæ Angular CLI - w konsoli wpisaæ komendê: npm install -g @angular/cli.
+ \item Jeœli backend nie jest uruchomiony na tej samej maszynie, nale¿y ustawiæ odpowiedni adres w pliku environment.prod.ts lub environment.ts (dla uruchomienia w œrodowisku debugowym).
+ \item Uruchomiæ program komend¹ ng serve.
+\end{enumerate}

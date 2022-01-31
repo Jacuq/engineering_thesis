@@ -8,55 +8,69 @@ Na wybór technologii wp³yw mia³y nastêpuj¹ce czynniki:
 
 
 \section{Technologie frontendowe}
-%TODO: jakis link do reacta i angulara jak sa wspomniane pierwszy raz?
-\subsection{Wybór technologii}
-Podczas wyboru technologi frontendowej rozwa¿ane by³y przede wszystkim frameworki React oraz Angular. Wg trends.builtwith, strony analizuj¹cej trendy technologiczne w bran¿y, popularnoœæ obu frameworków jest zbli¿ona. Na dzieñ 26.01.2022 295,780 stron internetowych zbudowanych jest z wykorzystaniem Angulara\cite{statsAngular}, a z wykorzystaniem Reacta 309,581\cite{statsReact}. 
 
-Na wykresach \ref{fig:ch2_angular_graph} oraz \ref{fig:ch2_react_graph} zwizualizowano poziom popularnoœci wspomnianych bibliotek w okresach 06.2017-10.2021 oraz 10.2018-10.2021, okreœlony na podstawie liczby stron korzystaj¹cych z danego rozwi¹zania spoœród miliona, 100 tysiêcy oraz 10 tysiêcy stron generuj¹cych najwiêkszy ruch. 
-\begin{figure}[ht]
+\subsection{Wybór technologii}
+Podczas wyboru technologi frontendowej rozwa¿ane by³y przede wszystkim frameworki React oraz Angular. \\
+Wg trends.builtwith - strony analizuj¹cej trendy technologiczne w bran¿y popularnoœæ obu frameworków jest zbli¿ona - na dzieñ 26.01.2022 295,780 stron internetowych zbudowanych jest z wykorzystaniem Angulara\cite{statsAngular}, a z wykorzystaniem Reacta 309,581\cite{statsReact}. 
+Wykresy \ref{fig:ch2_angular_graph} oraz \ref{fig:ch2_react_graph} przedstawiaj¹ popularnoœæ wspomnianych bibliotek w okresach 06.2017-10.2021 oraz 10.2018-10.2021 na podstawie liczby stron korzystaj¹cych z danego rozwi¹zania spoœród miliona, 100 tysiêcy oraz 10 tysiêcy stron generuj¹cych najwiêkszy ruch. \\
+
+\begin{figure}[H]
  \centering
  \includegraphics[width=0.7\textwidth]{rys02/angular.png}
- \caption{Statystyki wykorzystania frameworka Angular na stronach generuj¹cych najwiêkszy ruch~\cite{statsAngular}}
+ \caption{Statystyki wykorzystania frameworka Angular na stronach generuj¹cych najwiêkszy 
+ ruch\cite{statsAngular}}
  \label{fig:ch2_angular_graph}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
  \centering
  \includegraphics[width=0.7\textwidth]{rys02/react.png}
- \caption{Statystyki wykorzystania frameworka React na stronach generuj¹cych najwiêkszy ruch~\cite{statsReact}}
+ \caption{Statystyki wykorzystania frameworka React na stronach generuj¹cych najwiêkszy ruch\cite{statsReact}}
  \label{fig:ch2_react_graph}
 \end{figure}
 
-Na podstawie wykresów mo¿na ³atwo zauwa¿yæ spadaj¹c¹ popularnoœæ Angulara, nale¿y jednak pamiêtaæ, ¿e decyzja odnoœnie wyboru technologii, podejmowana by³a na pocz¹tkowym etapie pracy, a wiêc tendencja spadkowa nie by³a wtedy jeszcze tak widoczna. Przed tak znacz¹cym spadkiem popularnoœci Angulara obie technologie by³y wybierane z podobn¹ czêstotliwoœci¹, wiêc ostateczna decyzja sprowadzi³a siê do preferencji autora. W ramach zajêæ na uczelni oraz prywatnych projektów mia³ on stycznoœæ z obydwoma bibliotekami, ale to z Angularem mia³ wiêksze doœwiadczenie, w zwi¹zku z czym wybrany zosta³ w³aœnie ten framework.
+\begin{table}[H]
+\begin{tabular}{l|l|l|}
+\cline{2-3}
+\multicolumn{1}{c|}{}                                                            & \multicolumn{1}{c|}{Angular} & \multicolumn{1}{c|}{React} \\ \hline
+\multicolumn{1}{|l|}{Liczba dzia³aj¹cych stron}                                  & 139,795                      & 265,454                    \\ \hline
+\multicolumn{1}{|l|}{Procent spoœród miliona stron generuj¹cych najwiêkszy ruch} & 1.94\%                       & 2.06\%                     \\ \hline
+\multicolumn{1}{|l|}{Procent spoœród 100tys. stron generuj¹cych najwiêkszy ruch} & 5.39\%                       & 5.98\%                     \\ \hline
+\multicolumn{1}{|l|}{Procent spoœród 10tys. stron generuj¹cych najwiêkszy ruch}  & 9.67\%                       & 12.35\%                    \\ \hline
+\end{tabular}
+\caption{Porównanie statystyk u¿ycia Angulara i Reacta}
+\label{tab:AngularReactStats}
+\end{table}
+
+
+Na podstawie wykresów mo¿na ³atwo zauwa¿yæ spadaj¹c¹ popularnoœæ angulara, nale¿y jednak pamiêtaæ, ¿e decyzja odnoœnie wyboru technologii, podejmowana by³a na pocz¹tkowym etapie pracy, a wiêc tendencja spadkowa nie by³a wtedy jeszcze tak widoczna. Przed tak znacz¹cym spadkiem popularnoœci Angulara obie technologie by³y wybierane z podobn¹ czêstotliwoœci¹, wiêc ostateczna decyzja sprowadzi³a siê do preferencji autora - w ramach zajêæ na uczelni oraz prywantych projektów mia³ on stycznoœæ z obydwoma bibliotekami, ale to z Angularem mia³ wiêksze doœwiadczenie, w zwi¹zku z czym wybrany zosta³ w³aœnie ten framework.
 
 \subsection{Opis wybranej technologii}
-Angular to kompleksowy framework do projektowania oraz tworzenia wydajnych aplikacji typu SPA (Single Page Application)\cite{angularDocs}. Podstawowymi elementami sk³adowymi Frameworka Angular s¹ komponenty Angular, które s¹ zorganizowane w NgModules. 
 
-NgModules zbieraj¹ powi¹zany kod w zestawy funkcjonalne. Aplikacja Angular jest definiowana w³aœnie przez zestaw NgModules, zawsze ma co najmniej modu³ g³ówny, który umo¿liwia ³adowanie pocz¹tkowe, i zazwyczaj ma o wiele wiêcej modu³ów funkcji. 
- 
-Podczas implementacji korzystano g³ównie z komponentów i serwisów. Komponenty definiuj¹ widoki, które s¹ zestawami elementów ekranu wybieranymi i modyfikowanymi przez Angular zgodnie z logik¹ programu i danymi. Serwis w Angularze jest zwyk³¹ klas¹ TypeScript. Opatrzony jest dodatkowym dekoratorem, który mo¿e mieæ ró¿ne w³aœciwoœci konfiguracyjne. Serwis mo¿e dzia³aæ jako singleton dla ca³ej aplikacji lub mo¿e zostaæ powo³any dla konkretnego komponentu.
+Angular to kompleksowy framework do projektowania oraz tworzenia wydajnych aplikacji typu SPA (Single Page Application)\cite{angularDocs}. Podstawowymi elementami sk³adowymi Frameworka Angular s¹ komponenty Angular, które 
+s¹ zorganizowane w NgModules. NgModules zbieraj¹ powi¹zany kod w zestawy funkcjonalne; aplikacja Angular jest definiowana przez zestaw NgModules. Aplikacja zawsze ma co najmniej modu³ g³ówny, który umo¿liwia ³adowanie pocz¹tkowe, i zazwyczaj ma o wiele wiêcej modu³ów funkcji. \\ 
+Podczas implementacji korzystano g³ównie z komponentów i serwisów. Komponenty definiuj¹ widoki, które s¹ zestawami elementów ekranu, które Angular mo¿e wybieraæ i modyfikowaæ zgodnie z logik¹ programu i danymi. Serwis w Angularze jest zwyk³¹ klas¹ TypeScript. Opatrzony jest dodatkowym dekoratorem, który mo¿e mieæ ró¿ne w³aœciwoœci konfiguracyjne. Serwis mo¿e dzia³aæ jako singleton dla ca³ej aplikacji lub mo¿e zostaæ powo³any dla konkretnego komponentu.
 
-\section{Technologie backendowe}
+\section{technologie backendowe}
+
 \subsection{Wybór technologii}
-Podczas wyboru technologii backendowej g³ównymi kandydatami by³y Python\cite{pythonDocs} z frameworkiem Flask~\cite{flaskDocs} oraz Java~\cite{javaDocs} z frameworkiem Spring~\cite{springDocs}. 
+Podczas wyboru technologii backendowej g³ównymi kandydatami by³y Python\cite{pythonDocs} z frameworkiem Flask\cite{flaskDocs} oraz Java\cite{javaDocs} z frameworkiem Spring\cite{springDocs}. 
 
-Tutaj g³ównym kryterium okaza³ siê rozmiar aplikacji. W planowanej implementacji backend jest stosunkowo niewielki, wiêkszoœæ implementacji le¿y po stronie frontendu, a Flask jest lepiej przystosowany do tworzenia niewielkich aplikacji ni¿ Spring. 
+Tutaj g³ównym kryterium okazal sie rozmiar aplikacji - w planowanej implementacji backend jest stosunkowo niewielki, wiekszosc implementacji lezy po stronie frontendu, natomiast Flask jest lepiej przystosowany do tworzenia niewielkich aplikacji niz Spring. 
 
 \subsection{Opis wybranej technologii}
-Flask okreœlany jest mianem \emph{micro framework}, co oznacza, ¿e nie wymaga ¿adnych dodatkowych narzêdzi ani bibliotek. S³u¿y on do budowania aplikacji sieciowych i charakteryzuje siê brakiem wbudowanych komponentów do obs³ugi bazy danych czy walidacji formularzy, ale zamiast tego jest on skonstruowany w taki sposób, aby by³ ³atwo rozszerzalny o wszystkie potrzebne funkcjonalnoœci. 
-
+Flask okreœlany jest mianem micro framework, co oznacza, ¿e nie wymaga ¿adnych dodatkowych narzêdzi ani bibliotek. S³u¿y on do budowania aplikacji sieciowych i charakteryzuje siê brakiem wbudowanych komponentów do obs³ugi bazy danych czy walidacji formularzy, ale zamiast tego jest on skonstruowany w taki sposób, aby by³ ³atwo rozszerzalny o wszystkie potrzebne funkcjonalnoœci. \\
 Wœród zalet flaska wymieniane s¹ przede wszystkim: 
 \begin{itemize}
- \item pytonicznoœæ kodu -- kod pisany w tym frameworku pozwala na stosowanie dobrych praktyk programowania charakterystycznych dla jêzyka Python,
- \item ³atwoœæ nauki -- kod pisany w tym frameworku bardzo przypomina ten pisany w czystym Pythonie, a sam framework posiada te¿ niewiele komponentów i jest on uznawany za ³atwy do przyswojenia.
+ \item pytonicznoœæ kodu - kod pisany w tym frameworku pozwala na stosowanie dobrych praktyk programowania charakterystynczych dla jêzyka Python,
+ \item ³atwoœæ nauki - z uwagi na to, ¿e kod bardzo przypomina ten pisany w czystym Pythonie a sam framework posiada niewiele komponentów, jest on uznawany za ³atwy do przyswojenia.
 \end{itemize}
 
 \section{Wersjonowanie oraz pozosta³e narzêdzia}
 
  \subsection{Wersjonowanie}
-Do wersjonowania aplikacji wykorzystano system kontroli wersji GIT. Zdalne repozytorium zosta³o za³o¿one na platformie GitHub. Podczas pracy z repozytorium korzystano przede wszystkim z konsoli git bash oraz interfejsów graficznych udostêpnianych przez u¿ywane œrodowiska programistyczne. 
+Do wersjonowania aplikacji wykorzystano system kontroli wersji GIT. Zdalne repozytorium zosta³o za³o¿one na platformie github. Podczas pracy z GITem korzystano przede wszystkim z konsoli git bash oraz interfejsów graficznych udostêpnianych przez u¿ywane œrodowiska programistyczne. 
 
  \subsection{Œrodowiska programistyczne}
-Do pracy z kodem pisanym w jêzyku Python wykorzystano œrodowisko PyCharm. Jest ono bardzo intuicyjne, wspiera formatowanie kodu wed³ug standardu PEP8, a oprócz tego posiada ono wbudowane wsparcie dla projektów opartych o framework Flask. 
-
-Do pracy z frameworkiem Angular wykorzystano edytor kodu Visual Studio Code. Edytor nie posiada wbudowanych narzêdzi do pracy w tej technologii, ale jest otwarty na rozszerzenia, a z uwagi na swoj¹ popularnoœæ, jest ich du¿o i s¹ dobrej jakoœci. W ramach projektu przyda³y siê przede wszystkim rozszerzenia: SonarLint i Auto Rename Tag. 
+Do pracy z kodem pisanym w jêzyku Python wykorzystano œrodowisko PyCharm - jest ono bardzo intuicyjne, wspiera formatowanie kodu wed³ug standardu PEP8, a oprócz tego posiada ono wbudowane wsparcie dla projektów opartych o framework Flask. \\
+Do pracy z frameworkiem Angular wykorzystano edytor kodu Visual Studio Code. Edytor nie posiada wbudowanych narzêdzi do pracy w tej technologii, ale jest otwarty na rozszerzenia, a z uwagi na swoj¹ popularnoœæ, jest ich du¿o i s¹ dobrej jakoœci. W ramach projektu przyda³y siê przede wszystkim rozszerzenia: SonarLint i Auto Rename Tag. \\
