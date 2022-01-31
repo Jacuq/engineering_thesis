@@ -12,7 +12,7 @@ Na wybór technologii wp³yw mia³y nastêpuj¹ce czynniki:
 \subsection{Wybór technologii}
 Podczas wyboru technologi frontendowej rozwa¿ane by³y przede wszystkim frameworki React oraz Angular. Wg trends.builtwith, strony analizuj¹cej trendy technologiczne w bran¿y, popularnoœæ obu frameworków jest zbli¿ona. Na dzieñ 26.01.2022 295,780 stron internetowych zbudowanych jest z wykorzystaniem Angulara\cite{statsAngular}, a z wykorzystaniem Reacta 309,581\cite{statsReact}. 
 
-Na wykresach \ref{fig:ch2_angular_graph} oraz \ref{fig:ch2_react_graph} przedstawiono poziom popularnoœci wspomnianych bibliotek w okresach 06.2017-10.2021 oraz 10.2018-10.2021, okreœlony na podstawie liczby stron korzystaj¹cych z danego rozwi¹zania spoœród miliona, 100 tysiêcy oraz 10 tysiêcy stron generuj¹cych najwiêkszy ruch. 
+Na wykresach \ref{fig:ch2_angular_graph} oraz \ref{fig:ch2_react_graph} przedstawiono poziom popularnoœci wspomnianych bibliotek w okresach 06.2017-10.2021 oraz 10.2018-10.2021, okreœlony na podstawie liczby stron korzystaj¹cych z danego rozwi¹zania spoœród miliona, 100 tysiêcy oraz 10 tysiêcy stron generuj¹cych najwiêkszy ruch. Dok³adne wartoœci przedstawiono w tabeli \ref{tab:AngularReactStats}.
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.7\textwidth]{rys02/angular.png}
@@ -28,7 +28,9 @@ Na wykresach \ref{fig:ch2_angular_graph} oraz \ref{fig:ch2_react_graph} przedsta
 \end{figure}
 
 % TO DO: a gdzie jest referencja do tabeli umieszczona w tekœcie?
+% DONE: dodano referencjê, przeniesiono podpis na górê tabeli
 \begin{table}[ht]
+\caption{Porównanie statystyk u¿ycia Angulara i Reacta}
 \begin{tabular}{l|l|l|}
 \cline{2-3}
 \multicolumn{1}{c|}{}                                                            & \multicolumn{1}{c|}{Angular} & \multicolumn{1}{c|}{React} \\ \hline
@@ -37,7 +39,6 @@ Na wykresach \ref{fig:ch2_angular_graph} oraz \ref{fig:ch2_react_graph} przedsta
 \multicolumn{1}{|l|}{Procent spoœród 100tys. stron generuj¹cych najwiêkszy ruch} & 5.39\%                       & 5.98\%                     \\ \hline
 \multicolumn{1}{|l|}{Procent spoœród 10tys. stron generuj¹cych najwiêkszy ruch}  & 9.67\%                       & 12.35\%                    \\ \hline
 \end{tabular}
-\caption{Porównanie statystyk u¿ycia Angulara i Reacta}
 \label{tab:AngularReactStats}
 \end{table}
 
@@ -66,12 +67,13 @@ Wœród zalet flaska wymieniane s¹ przede wszystkim:
  \item ³atwoœæ nauki -- kod pisany w tym frameworku bardzo przypomina ten pisany w czystym Pythonie, a sam framework posiada te¿ niewiele komponentów i jest on uznawany za ³atwy do przyswojenia.
 \end{itemize}
 
-\section{Wersjonowanie oraz pozosta³e narzêdzia}
-
- \subsection{Wersjonowanie}
-Do wersjonowania aplikacji wykorzystano system kontroli wersji GIT. Zdalne repozytorium zosta³o za³o¿one na platformie GitHub. Podczas pracy z repozytorium korzystano przede wszystkim z konsoli git bash oraz interfejsów graficznych udostêpnianych przez u¿ywane œrodowiska programistyczne. 
+\section{Kontrola wersji oraz pozosta³e narzêdzia}
+% DONE: przed³u¿ono podrozdzia³y
+ \subsection{Kontrola wersji}
+Jako system kontroli wersjii aplikacji wykorzystano system GIT. Decyzja by³a podjêta bez wahania -- to najpopularniejszy tego typu system oraz jedyny, z którym autor mia³ stycznoœæ. Zdalne repozytorium zosta³o za³o¿one na platformie GitHub i s³u¿y³o równie¿ jako sposób na udostêpnianie postêpów pracy promotorowi. Na jednej ga³êzi repozytorium znajdowa³a siê dokumentacja, natomiast kod Ÿród³owy ca³ej aplikacji by³ na drugiej ga³êzi. 
+Podczas pracy z repozytorium korzystano przede wszystkim z konsoli git bash oraz interfejsów graficznych udostêpnianych przez u¿ywane œrodowiska programistyczne. Interfejsy graficzne s¹ szczególnie u¿yteczne podczas rozwi¹zywanie konfliktów, choæ w wypadku repozytorium, do którego zmiany wysy³a tylko jedna osoba, trudno o ich wystêpowanie. 
 
  \subsection{Œrodowiska programistyczne}
-Do pracy z kodem pisanym w jêzyku Python wykorzystano œrodowisko PyCharm. Jest ono bardzo intuicyjne, wspiera formatowanie kodu wed³ug standardu PEP8, a oprócz tego posiada ono wbudowane wsparcie dla projektów opartych o framework Flask. 
+Do pracy z kodem pisanym w jêzyku Python wykorzystano œrodowisko PyCharm. Jest ono bardzo intuicyjne, wspiera formatowanie kodu wed³ug standardu PEP8, czyli powszechnie przyjêtej konwencji formatowania kodu w jêzyku Python. Œrodowisko PyCharm posiada równie¿ wbudowane wsparcie dla projektów opartych o framework Flask. IDE ma równie¿ takie funkcjonalnoœci jak generowanie pliku \texttt{requirments.txt}, który pomaga w publikowaniu aplikacji poprzez tworzenie spisu zale¿noœci od zewnêtrznych bibliotek, czy tworzenie wielu konfiguracji uruchomieniowych, co pozwala na budowanie i testowanie aplikacji w ró¿nych œrodowiskach (np. developerskim oraz produkcjnym). 
 
-Do pracy z frameworkiem Angular wykorzystano edytor kodu Visual Studio Code. Edytor nie posiada wbudowanych narzêdzi do pracy w tej technologii, ale jest otwarty na rozszerzenia, a z uwagi na swoj¹ popularnoœæ, jest ich du¿o i s¹ dobrej jakoœci. W ramach projektu przyda³y siê przede wszystkim rozszerzenia: SonarLint i Auto Rename Tag. 
+Do pracy z frameworkiem Angular wykorzystano edytor kodu Visual Studio Code. Edytor nie posiada wbudowanych narzêdzi do pracy w tej technologii, ale jest otwarty na rozszerzenia, a z uwagi na swoj¹ popularnoœæ, jest ich du¿o i s¹ dobrej jakoœci. W ramach projektu przyda³y siê przede wszystkim rozszerzenia: SonarLint i Auto Rename Tag. Przydatna jest równie¿ mo¿liwoœæ wykorzystywania terminali z poziomu œrodowiska - Angular korzysta z linii komend do tworzenia komponentówi serwisów, inicjalizacji projektu oraz kompilacji i uruchamiania aplikacji.  
