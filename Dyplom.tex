@@ -412,13 +412,13 @@ Listing \thelstlisting: #1\hfill%\hfill%
 %%  Pakiety i komendy zastosowane tylko do zamieszczenia informacji o u¿ytych komendach i fontach w tym szablonie.
 %%  Normalnie nie s¹ one potrzebne. Proszê poni¿sze deklaracje zamarkowaæ podczas redakcji pracy !!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{memlays}     % extra layout diagrams, zastosowane w szblonie do 'debuggowania', u¿ywa pakietu layouts
-%\usepackage{layouts}
-\usepackage{printlen} % pakiet do wyœwietlania wartoœci zdefiniowanych d³ugoœci, stosowany do 'debuggowania'
-\uselengthunit{pt}
-\makeatletter
-\newcommand{\showFontSize}{\f@size pt} % makro wypisuj¹ce wielkoœæ bie¿¹cej czcionki
-\makeatother
+%%%\usepackage{memlays}     % extra layout diagrams, zastosowane w szblonie do 'debuggowania', u¿ywa pakietu layouts
+%%%%\usepackage{layouts}
+%%%\usepackage{printlen} % pakiet do wyœwietlania wartoœci zdefiniowanych d³ugoœci, stosowany do 'debuggowania'
+%%%\uselengthunit{pt}
+%%%\makeatletter
+%%%\newcommand{\showFontSize}{\f@size pt} % makro wypisuj¹ce wielkoœæ bie¿¹cej czcionki
+%%%\makeatother
 % do pokazania ramek mo¿na by³oby u¿yæ:
 %\usepackage{showframe} 
 
@@ -540,7 +540,7 @@ Listing \thelstlisting: #1\hfill%\hfill%
     Title = {\@title},
     Author = {\@author},
     Subject={},  
-    Keywords={raz, dwa, trzy, cztery}, 
+    Keywords={aplikacja internetowa, Angular, TypeScript, Python, Flask, REST API, teoria muzyki}, 
 		Producer={}, 
 	  CreationDate= {}, % zgodnie ze sk³adni¹: {D:yyyymmddhhmmss}, np. D:20210208175600
     ModDate={D:\pdfdate},   % data modyfikacji bêdzie dat¹ kompilacji
@@ -728,10 +728,10 @@ Listing \thelstlisting: #1\hfill%\hfill%
 \begin{picture}(0,0)
 \put(26,-124){\fbox{
 \parbox[c][71mm][c]{104mm}{\centering%\lineskip=34pt 
-\fontsize{16pt}{18pt}\selectfont \@title\\[5mm]
-\fontsize{16pt}{18pt}\selectfont \@titleEN\\[20mm]
-\fontsize{16pt}{18pt}\selectfont AUTOR:\\[2mm]
-\fontsize{14pt}{16pt}\selectfont \@author}
+{\fontsize{18pt}{20pt}\bfseries\selectfont \@title}\\[5mm]
+{\fontsize{18pt}{20pt}\bfseries\selectfont \@titleEN}\\[10mm]
+%\fontsize{16pt}{18pt}\selectfont AUTOR:\\[2mm]
+{\fontsize{16pt}{18pt}\selectfont \@author}}
 }
 }
 \end{picture}
@@ -739,34 +739,34 @@ Listing \thelstlisting: #1\hfill%\hfill%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Reszta strony z nazw¹ uczelni, wydzia³u, kierunkiem, specjalnoœci¹
 %% promotorem, ocen¹ pracy, miastem i rokiem
-	{\centering%\vspace{-1cm}
-		{\fontsize{22pt}{24pt}\selectfont \@uczelnia}\\[0.4cm]
-		{\fontsize{22pt}{24pt}\selectfont \@wydzial}\\[0.5cm]
-		  \hrule %\vspace*{0.7cm}
+	{\vskip 9pt\centering
+		{\fontsize{20pt}{22pt}\bfseries\selectfont \@uczelnia}\\[5pt]
+		{\fontsize{16pt}{18pt}\bfseries\selectfont \@wydzial}\\[1pt]
+		  \hrule
 	}
-{\flushleft\fontsize{14pt}{16pt}\selectfont%
+{\vskip 24pt\raggedright\fontsize{14pt}{16pt}\selectfont%
 \begin{tabular}{ll}
-KIERUNEK: & \@kierunek\\
-SPECJALNOŒÆ: & \@specjalnosc\\
+Kierunek: & {\bfseries \@kierunek}\\
+Specjalnoœæ: & {\bfseries \@specjalnosc}\\
 \end{tabular}\\[1.3cm]
 }
-{\centering
-{\fontsize{32pt}{36pt}\selectfont PRACA DYPLOMOWA}\\[0.5cm]
-{\fontsize{32pt}{36pt}\selectfont IN¯YNIERSKA}\\[2.5cm]
+{\vskip 29pt\centering{\fontsize{24pt}{26pt}\selectfont%
+{\fontsize{26pt}{28pt}\selectfont P}RACA {\fontsize{26pt}{24pt}\selectfont D}YPLOMOWA\\[7pt]
+{\fontsize{26pt}{28pt}\selectfont I}N¯YNIERSKA}\\[2.5cm]
 }
 \vfill
-\begin{tabularx}{\linewidth}{p{6cm}X}
-		&{\fontsize{16pt}{18pt}\selectfont PROWADZ¥CY PRACÊ:}\\[2mm] %INFO: tutaj jest miejsce na nazwisko promotora pracy
-		&{\fontsize{14pt}{16pt}\selectfont \@promotor}\\[10mm]
+{\centering
+		{\fontsize{14pt}{16pt}\selectfont Opiekun pracy}\\[2mm] %INFO: tutaj jest miejsce na nazwisko promotora pracy
+		{\fontsize{14pt}{16pt}\bfseries\selectfont \@promotor}\\[10mm]
 %		&{\fontsize{16pt}{18pt}\selectfont OCENA PRACY:}\\[20mm]
 % Tekst 'OCENA PRACY:' mo¿na usun¹æ, jeœli praca ma byæ dostarczona bez podpisu promotora (w dobie pandemii)
-% Czyli zamiast powy¿ej zdefiniowanego wiersza tabeli mo¿na wpisaæ:
-   &{\fontsize{16pt}{18pt}\selectfont }\\[20mm]
-	\end{tabularx}
-\vspace{2cm}
+}
+\vspace{4cm}
+{\fontsize{12pt}{14pt}\selectfont S³owa kluczowe: aplikacja internetowa, Angular, TypeScript, Python, Flask, REST API, teoria muzyki}
+\vspace{1cm}
 \hrule\vspace*{0.3cm}
 {\centering
-{\fontsize{16pt}{18pt}\selectfont \@date}\\[0cm]
+{\fontsize{14pt}{16pt}\selectfont \@date}\\[0cm]
 }
 %\ungaramond
 \normalfont
@@ -785,11 +785,11 @@ SPECJALNOŒÆ: & \@specjalnosc\\
 \titleShort{Projekt aplikacji webowej ...}
 \titleEN{Design of a web application for musical self-education}
 \author{Jacek Kozicki}
-\uczelnia{POLITECHNIKA WROC£AWSKA}
-\wydzial{WYDZIA£ INFORMATYKI I TELEKOMUNIKACJI}
-\kierunek{INFORMATYKA (TECHICZNA?)} %TODO upewnic sie co ostatecznie powinienem tu wpisac
-\specjalnosc{IN¯YNIERIA SYSTEMÓW INFORMATYCZNYCH}
-\promotor{dr in¿. Tomasz Kubik, Katedra Informatyki Technicznej} %TODO czy jako jednostke to wystarczy?
+\uczelnia{Politechnika Wroc³awska}
+\wydzial{Wydzia³ Informatyki i Telekomunikacji}
+\kierunek{Informatyka techniczna (INF)}
+\specjalnosc{In¿ynieria systemów informatycznych (INS)}
+\promotor{dr in¿.\ Tomasz Kubik}
 \date{WROC£AW, 2021}
 
 % Ustawienie odstêpu od góry w nienumerowanych rozdzia³ach oraz wykazach:
@@ -832,18 +832,18 @@ SPECJALNOŒÆ: & \@specjalnosc\\
 % INFO: Strona z licencj¹ CC zdefiniowana poni¿ej dotyczy tylko zredagowanej treœci. 
 %       Z samego szablon mo¿na korzystywaæ bez koniecznoœci cytowania jego autora.
 %       Podczas pisania pracy dyplomowej stronê tê mo¿na usun¹æ (a nawet nale¿y).
-\thispagestyle{empty}
-\mbox{}\vfill
-\noindent\begin{tabular}{@{}ll} Opracowa³: & Tomasz Kubik \texttt{<tomasz.kubik@pwr.edu.pl>}\\
- Data: & maj 2021 
- \end{tabular}\\[15mm]
-\noindent\includegraphics[width=3cm]{by-nc-sa}\newline
-{\normalfont 
-Tekst zawarty w niniejszym szablonie jest udostêpniany na licencji Creative Commons: \emph{Uznanie autorstwa -- U¿ycie niekomercyjne -- Na tych samych warunkach, 3.0 Polska}, Wroc³aw 2021. \\[2pt]
-Oznacza to, ¿e wszystkie przekazane treœci mo¿na kopiowaæ i  wykorzystywaæ do celów niekomercyjnych, a tak¿e tworzyæ na ich podstawie utwory zale¿ne pod warunkiem podania autora i~nazwy licencjodawcy oraz udzielania na utwory zale¿ne takiej samej licencji. Tekst licencji jest dostêpny pod adresem: \url{http://creativecommons.org/licenses/by-nc-sa/3.0/pl/}.\\[2pt]
-Podczas redakcji pracy dyplomowej stronê tê mo¿na usun¹æ. Licencja dotyczy bowiem zredagowanego opisu, a nie samego latexowego szablonu. Latexowy szablon mo¿na wykorzystywaæ bez wzmiankowania o jego autorze. 
-}
-\clearpage
+%%%\thispagestyle{empty}
+%%%\mbox{}\vfill
+%%%\noindent\begin{tabular}{@{}ll} Opracowa³: & Tomasz Kubik \texttt{<tomasz.kubik@pwr.edu.pl>}\\
+ %%%Data: & maj 2021 
+ %%%\end{tabular}\\[15mm]
+%%%\noindent\includegraphics[width=3cm]{by-nc-sa}\newline
+%%%{\normalfont 
+%%%Tekst zawarty w niniejszym szablonie jest udostêpniany na licencji Creative Commons: \emph{Uznanie autorstwa -- U¿ycie niekomercyjne -- Na tych samych warunkach, 3.0 Polska}, Wroc³aw 2021. \\[2pt]
+%%%Oznacza to, ¿e wszystkie przekazane treœci mo¿na kopiowaæ i  wykorzystywaæ do celów niekomercyjnych, a tak¿e tworzyæ na ich podstawie utwory zale¿ne pod warunkiem podania autora i~nazwy licencjodawcy oraz udzielania na utwory zale¿ne takiej samej licencji. Tekst licencji jest dostêpny pod adresem: \url{http://creativecommons.org/licenses/by-nc-sa/3.0/pl/}.\\[2pt]
+%%%Podczas redakcji pracy dyplomowej stronê tê mo¿na usun¹æ. Licencja dotyczy bowiem zredagowanego opisu, a nie samego latexowego szablonu. Latexowy szablon mo¿na wykorzystywaæ bez wzmiankowania o jego autorze. 
+%%%}
+%%%\clearpage
 %\chapterstyle{noNumbered}
 \include{streszczenie} 
 \pagestyle{outer}

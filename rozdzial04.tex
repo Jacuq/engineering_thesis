@@ -1,38 +1,40 @@
 \chapter{Projekt aplikacji}
 
 \section{Architektura systemu}
-
-Aplikacja bazuje na REST API - komunikacja pomiêdzy aplikacj¹ frontendow¹ i backendow¹ odbywa siê w sposób przedstawiony na rysunku \ref{fig:restArchitecture}. Aplikacja kliencka wysy³a zapytania HTTP na odpowiednie URI, a w odpowiedzi otrzymuje dane w formacie JSON. 
+W aplikacja zbudowanych na bazie REST API komunikacja pomiêdzy aplikacj¹ frontendow¹ i~backendow¹ odbywa siê w sposób przedstawiony na rysunku \ref{fig:restArchitecture}. Aplikacja kliencka wysy³a ¿¹dania protoko³em HTTP pod opowiedni adres URL, a w odpowiedzi otrzymuje dane zserializowane do formatu XML b¹dŸ JSON (przy czym format JSON jest obecnie bardziej preferowany). 
 \begin{figure}[h]
  \centering
- \includegraphics[width=\textwidth]{rys04/RestArchi.png}
- \caption{Architektura komunikacji w systemie opartym na REST API\cite{restAPI}}
+ %\includegraphics[width=\textwidth]{rys04/RestArchi.png} % TO DO: rysunek jest chroniony (© Copyright AltexSoft 2022), nie wolno z niego korzystaæ, chyba ¿e siê ma zgodê autora.
+\includegraphics[scale=1.5]{rys04/restapi}
+ \caption{Architektura komunikacji w systemie opartym na REST API}
  \label{fig:restArchitecture}
 \end{figure}
-Typowy sposób tworzenia endpointów w REST API to nazywanie endpointów nazwami kolekcji, a nastêpnie uszczegó³awianie zapytania w kolejnych czêœciach adresu\cite{restApiStackOverflow}. Przyk³adowe endpointy w REST API powinny wygl¹daæ nastêpuj¹co: 
-\begin{description}
- \item [API/people] - endpoint zwracaj¹cy zawartoœæ kolekcji ``people''
- \item [API/people/:id] - endpoint zwracaj¹cy element kolekcji ``people'' o zadanym id
- \item [API/pepole/:id/name] - endpoint zwracaj¹cy wartoœæ pola ``name'' elemntu kolekcji ``people'' o zadanym id
-\end{description}
 
-Rozwi¹zanie REST API pozwala na ³atwe przesy³anie informacji o potrzebnych obiektach, takich jak skale czy akordy - JSON nie ogranicza wielkoœci wiadomoœci czy liczby elementów, wiêc takie obiekty œwietnie nadaj¹ siê do przekazywania tablic o nieznanych z góry rozmiarach. REST API pozwala równie¿ w prosty sposób zaimplementowaæ mechanizmy obs³ugi b³êdów poprzez do³¹czanie do przekazywanego obiektu statusów HTTP, które opisuj¹ efekt zapytania czy nawet dodatkowej wiadomoœci opisuj¹cej b³¹d w dok³adniejszy sposób. \\
-Kolejn¹ zalet¹ stosowania tego podejœcia jest jego skalowalnoœæ. Ka¿da funkcjonalnoœæ jest przypisana pod osobny adres, wiêc ³atwo dodawaæ nowe poprzez tworzenie kolejnych endpointów. \\
+Typowy sposób tworzenia endpointów w REST API to nazywanie endpointów nazwami kolekcji, a nastêpnie zezwolenie na uszczegó³owienie ¿¹dañ poprzez umieszczanymi w adresie URL odpowiednich danych~\cite{restApiStackOverflow} (¿¹dania przesy³ane metod¹ POST mog¹ przenosiæ dane w ciele ¿¹dania). Przyk³adowe endpointy w REST API powinny wygl¹daæ nastêpuj¹co: 
+\begin{itemize}
+ \item \texttt{API/people} -- endpoint zwracaj¹cy zawartoœæ kolekcji \texttt{people},
+ \item \texttt{API/people/<id>} -- endpoint zwracaj¹cy element kolekcji \texttt{people} o zadanym \texttt{id},
+ \item \texttt{API/pepole/<id>/name} -- endpoint zwracaj¹cy wartoœæ pola \texttt{name} elementu kolekcji \texttt{people} o zadanym \texttt{id}.
+\end{itemize}
+
+Patrz¹c z perspektywy implementacji aplikacji do muzycznego samokszta³cenia specjalnie zaprojektowane REST API mog³oby pozwoliæ na ³atwe przesy³anie informacji o potrzebnych obiektach, jak np.\ skale czy akordy. JSON nie ogranicza wielkoœci wiadomoœci czy liczby elementów, wiêc takie obiekty œwietnie nadaj¹ siê do przekazywania tablic o nieznanych z góry rozmiarach. REST API pozwala równie¿ w prosty sposób zaimplementowaæ mechanizmy obs³ugi b³êdów poprzez do³¹czanie do przekazywanego obiektu statusów HTTP, które opisuj¹ efekt zapytania czy nawet dodatkowej wiadomoœci opisuj¹cej b³¹d w dok³adniejszy sposób. 
+
+Do zalet stosowania takiego podejœcia do implementacji aplikacji jest osi¹gana skalowalnoœæ. Ka¿d¹ funkcjê mo¿na przypisaæ pod osobny adres, wiêc ³atwo dodawaæ nowe, poprzez tworzenie kolejnych endpointów. 
 
 \section{Architektura aplikacji klienta}
+Korzystaj¹c z mo¿liwoœci oferowanych przez framework Angular zdecydowano siê rozbiæ aplikacjê na mniejsze elementy -- charakterstyczne dla tej biblioteki komponenty oraz serwisy. 
 
-Korzystaj¹c z mo¿liwoœci oferowanych przez framework Angular zdecydowano siê rozbiæ aplikacjê na mniejsze elementy - charakterstyczne dla tej biblioteki komponenty oraz serwisy. Ka¿da podstrona sk³ada siê z odpowiednich, po³¹czonych ze sob¹ komponentów. Takie podejœcie pozwala na wielokrotne u¿ywanie tego samego kodu - ten sam komponent mo¿na wykorzystaæ w kilku miejsach na stronie lub na wielu ró¿nych podstronach. Pozwala ono równie¿ na generowanie wielu podobnych podstron poprzez zamianê pojedynczych komponentów. \\
+Ka¿d¹ podstronê mo¿na zbudowaæ z odpowiednio dobranych i po³¹czonych ze sob¹ komponentów. Ten sam komponent mo¿na wykorzystaæ w kilku miejscach (na stronie lub na wielu ró¿nych podstronach). Takie podejœcie pozwala na generowanie wielu podobnych podstron poprzez zamianê pojedynczych komponentów. 
+Pozwala te¿ na wielokrotne u¿ywanie tego samego kodu (ten sam komponent mo¿na wykorzystaæ w kilku miejscach na stronie lub na wielu ró¿nych podstronach). 
 \begin{figure}[h]
  \centering
- \includegraphics[width=\textwidth]{rys04/komponenty.png}
- \caption{Diagram podstrony z wirtualnym instrumentem z wyró¿nieniem komponentów i zale¿noœci miêdzy nimi}
+ \includegraphics[scale=1.6]{rys04/podstrona}
+ \caption{Schemat podstrony z wirtualnym instrumentem z wyró¿nieniem komponentów i zale¿noœci miêdzy nimi}
  \label{fig:components}
 \end{figure}
-Diagram \ref{fig:components} przedstawia schemat jednej z podstron w aplikacji - podstrony zawieraj¹cej wirtualny instrument. Jak widaæ sam wirtualny instrument jest osobnym komponentem, co pozwala na stworzenie czêœci aplikacji dedykowanej dla gitary akustycznej oraz czêœci aplikacji dedykowanej dla gitary basowej, a potencjalnie równie¿ dla dowolnych innych instrumentów. W tym celu nale¿y jedynie zmieniæ komponent implementuj¹cy instrument. \\ 
-Warto równie¿ zwróciæ uwagê, na to, ¿e oprócz widocznych na diagramie mniejszych komponentów, pojedynczy komponent mo¿e zawieraæ w sobie serwisy. Pozwalaj¹ one m.in. na pobieranie danych z API czy dostêp do zasobów lokalnych serwera.  
+Na diagramie \ref{fig:components} przedstawiono schemat jednej z podstron w aplikacji -- podstrony zawieraj¹cej wirtualny instrument. Jak widaæ sam wirtualny instrument jest osobnym komponentem, co pozwala na stworzenie czêœci aplikacji dedykowanej dla gitary akustycznej oraz czêœci aplikacji dedykowanej dla gitary basowej, a potencjalnie równie¿ dla dowolnych innych instrumentów. W tym celu nale¿y jedynie zmieniæ komponent implementuj¹cy instrument. 
 
-
-
+Warto równie¿ zwróciæ uwagê, na to, ¿e oprócz widocznych na diagramie mniejszych komponentów, pojedynczy komponent mo¿e zawieraæ w sobie serwisy. Pozwalaj¹ one, m.in., na pobieranie danych z API czy dostêp do zasobów lokalnych serwera.  
 
 
 

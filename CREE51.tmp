@@ -2,9 +2,12 @@
 
 \section{Implementacja Backendu}
 Schemat projektu aplikacji backendowej przedstawiono na rysunku \ref{fig:schemat_BE}. Najwa¿niejszymi modu³ami s¹ pliki \texttt{notes\_calc.py} i \texttt{theory\_api.py} -- odpowiadaj¹ one kolejno za obliczanie dŸwiêków w danych akordach, skalach czy interwa³ach oraz za tworzenie endpointów aplikacji. 
+
 Pliki \texttt{chords.py}, \texttt{scales.py}, \texttt{intervals.py} to pliki pomocnicze zawieraj¹ce definicje wzorców wykorzystywanych przez \texttt{notes\_calc} oraz listy wszystkich dostêpnych obiektów. 
+
 Pliki testów jednostkowych znajduj¹ siê w katalogu \texttt{tests.} 
-\begin{figure}[h]
+
+\begin{figure}[H]
 	 \centering
 	 \includegraphics[width=0.35\textwidth]{rys05/schemat_BE.png}
 	 \caption{Schemat projektu aplikacji frontendowej}
@@ -100,13 +103,13 @@ Po zaimplementowaniu ca³oœci aplikacji, zauwa¿ono, ¿e obliczenia s¹ na tyle niew
 
 \section{Implementacja Frontendu}
 Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowanych w Angularze. Program podzielony jest na fragmenty zwane komponentami oraz serwisami. Ka¿dy komponent oraz ka¿dy serwis jest przechowywany w osobnym folderze. Katalog assests zawiera zasoby wykorzystywane w aplikacji, takie jak dŸwiêki czy obrazki. Oprócz komponentów stworzonych przez u¿ytkownika wykorzystywane s¹ równie¿ pliki wygenerowane za pomoc¹ Angular CLI znajduj¹ce siê w katalogu g³ównym: 
-	\begin{itemize}
-	 \item \texttt{app-routing.module.ts} -- modu³ pozwalaj¹cy na zarz¹dzanie routingiem wewn¹trz projektu
-	 \item \texttt{app.module.ts} --  g³ówny modu³ aplikacji opisuj¹cy elementy importowane przez aplikacjê oraz deklarowane w niej komponenty i serwisy
-	 \item \texttt{app.*} -- pozosta³e pliki kompenentu g³ównego
-	 \item \texttt{environment.prod.ts} -- plik zawieraj¹ce zmienne œrodowiskowe dla œrodowiska produkcyjnego
-	 \item \texttt{environment.ts} -- zmienne œrodowiskowe do wykorzystania podczas tworzenia i testowania aplikacji
-	\end{itemize}
+	\begin{description}
+	 \item [app-routing.module.ts] - modu³ pozwalaj¹cy na zarz¹dzanie routingiem wewn¹trz projektu
+	 \item [app.module.ts] -  g³ówny modu³ aplikacji opisuj¹cy elementy importowane przez aplikacjê oraz deklarowane w niej komponenty i serwisy
+	 \item [app.*] - pozosta³e pliki kompenentu g³ównego
+	 \item [environment.prod.ts] - plik zawieraj¹ce zmienne œrodowiskowe dla œrodowiska produkcyjnego
+	 \item [environment.ts] - zmienne œrodowiskowe do wykorzystania podczas tworzenia i testowania aplikacji
+	\end{description}
 
 \begin{figure}[H]
 	 \centering
@@ -116,36 +119,35 @@ Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowany
 \end{figure}
 
 Ka¿dy komponent sk³ada siê z 4 plików:
-\begin{itemize}
-	 \item \texttt{component-name.css} -- plik opisuj¹cy style wykorzystane w obrêbie tego komponentu,
-	 \item \texttt{component-name.html} -- plik opisuj¹cy rozk³ad elementów w danym komponencie. Angular pozwala na wykorzystywanie tam selektorów innych komponentów oraz dodatkowych dyrektyw, takich jak np. ngIf czy ngFor,
-	 \item \texttt{component-name.ts} -- plik zawieraj¹cy konstruktor komponentu oraz skrypty napisane przez u¿ytkownika dla danego komponentu,
-	 \item \texttt{component-name.spec.ts} -- plik zawieraj¹cy testy jednostkowe komponentu.
-\end{itemize}
-Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: service-name.ts oraz service-name.spec.ts. Pe³ni¹ one takie same role jak w wypadku komponentów -- pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe.
+\begin{description}
+	 \item [component-name.css] - plik opisuj¹cy style wykorzystane w obrêbie tego komponentu,
+	 \item [component-name.html] - plik opisuj¹cy rozk³ad elementów w danym komponencie. Angular pozwala na wykorzystywanie tam selektorów innych komponentów oraz dodatkowych dyrektyw, takich jak np. ngIf czy ngFor,
+	 \item [component-name.ts] - plik zawieraj¹cy konstruktor komponentu oraz skrypty napisane przez u¿ytkownika dla danego komponentu,
+	 \item [component-name.spec.ts] - plik zawieraj¹cy testy jednostkowe komponentu.
+\end{description}
+Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: service-name.ts oraz service-name.spec.ts. Pe³ni¹ one takie same role jak w wypadku komponentów - pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe.
 
 \begin{figure}[H]
 	 \centering
-	 \includegraphics[width=0.4\textwidth]{rys05/schemat_FE2.png}
-	 \caption{Katalogi \texttt{audio-player} oraz \texttt{guitar-page} pokazuj¹ schemat plików odpowiednio serwisu i komponentu}
+	 \includegraphics[width=0.6\textwidth]{rys05/schemat_FE2.png}
+	 \caption{Katalogi audio-player oraz guitar-page pokazuj¹ schemat plików odpowiednio serwisu i komponentu}
 	 \label{fig:schemat_FE2}
 \end{figure}
 
 \subsection{Strona g³ówna}
-Na stronie g³ównej wyœwietlony jest panel z krótkim tekstem o aplikacji oraz jej autorze. 
+Na stronie g³ownej wyœwietlony jest panel z krótkim tekstem o aplikacji oraz jej autorze. 
 Na górze strony widoczny jest pasek nawigacji, który pozwala na przejœcie do wszystkich funkcjonalnoœci aplikacji. 
-To na tê stronê przekierowywany jest u¿ytkownik jeœli próbuje dostaæ siê na nieistniej¹c¹ podstronê. 
+To na tê stronê przekierowywany jest u¿ytkownik jeœli próbuje dostaæ sie na nieistniej¹c¹ podstronê. 
 \begin{figure}[h]
 	 \centering
-	 \includegraphics[width=0.8\textwidth]{rys05/homepage.png} % TO DO: powtórzony podpis pod rysunkiem, proszê poprawiæ
-	 \caption{Katalogi \texttt{audio-player} oraz \texttt{guitar-page} pokazuj¹ schemat plików odpowiednio serwisu i komponentu}
+	 \includegraphics[width=0.4\textwidth]{rys05/homepage.png}
+	 \caption{Katalogi audio-player oraz guitar-page pokazuj¹ schemat plików odpowiednio serwisu i komponentu}
 	 \label{fig:homepage}
 \end{figure}
 
 
 \subsection{Nawigacja}
-% TO DO: przypominam o regu³ach stosowania czcionki maszynowej (nazwy plików, kod Ÿród³owy, nazwy klas itp.). Proszê poprawiæ.
-Do nawigacji podczas korzystania z aplikacji s³u¿y pasek nawigacji umieszczony na górze strony. Ka¿dy z guzików jest odnoœnikiem do odpowiednich podstron. Próba przejœcia na podstrony, które nie s¹ wymienione na pasku nawigacji skutkuje przekierowaniem stronê g³ówn¹. Implementacja nawigacji opiera siê na wykorzystaniu modu³u routing zawaratego w Angularze. W pliku \texttt{app-routing.module.ts} zdefiniowano wszystkie œcie¿ki obs³ugiwane przez aplikacjê. Mo¿na je zobaczyæ na listingu \ref{lst:routing}. szczególnie warto zwróciæ uwagê na ostatni wpis w tablicy. Wpis path: '**' to tzw.\ dzika karta (ang.~\emph{wildcard route}) -- œcie¿ka, która jest wykorzystywana, kiedy u¿ytkownik próbuje dostaæ siê na dowoln¹ podstronê, która nie zosta³a opisana w tablicy przed wyst¹pieniem tego wpisu. Ze wzglêdu na sposób dzia³ania routingu, wa¿ne, aby dzika karta by³a na koñcu tablicy: podczas szukania œcie¿ki porównywana jest podana œcie¿ka i kolejne wartoœci pola ``path'' w tablicy Routes. Porównanie dowolnej œcie¿ki z symbolem '**' zawsze zwraca wartoœæ prawda, wiêc umieszczenie tego symbolu jako wczeœniejszego wpisu, zablokowa³oby dostêp do œcie¿ek zadeklarowanych póŸniej. 
+Do nawigacji podczas korzystania z aplikacji s³u¿y pasek nawigacji umieszczony na górze strony. Ka¿dy z guzików jest odnoœnikiem do odpowiednich podstron. Próba przejœcia na podstrony, które nie s¹ wymienione na pasku nawigacji skutkuje przekierowaniem stronê g³ówn¹. Implementacja nawigacji opiera siê na wykorzystaniu modu³u routing zawaratego w Angularze. W pliku app-routing.module.ts zdefiniowano wszystkie œcie¿ki obs³ugiwane przez aplikacjê. Mo¿na je zobaczyæ na listingu \ref{lst:routing}. szczególnie warto zwróciæ uwagê na ostatni wpis w tablicy. Wpis path: '**' to tzw. dzika karta (ang. wildcard route) - œcie¿ka, która jest wykorzystywana, kiedy u¿ytkownik próbuje dostaæ siê na dowoln¹ podstronê, która nie zosta³a opisana w tablicy przed wyst¹pieniem tego wpisu. Ze wzglêdu na sposób dzia³ania routingu, wa¿ne, aby dzika karta by³a na koñcu tablicy: podczas szukania œcie¿ki porównywana jest podana œcie¿ka i kolejne wartoœci pola ``path'' w tablicy Routes. Porównanie dowolnej œcie¿ki z symbolem '**' zawsze zwraca wartoœæ prawda, wiêc umieszczenie tego symbolu jako wczeœniejszego wpisu, zablokowa³oby dostêp do œcie¿ek zadeklarowanych póŸniej. 
 \begin{lstlisting}[caption={Œcie¿ki zdefiniowane w aplikacji}, label={lst:routing}, language=JavaScript, basicstyle=\footnotesize\ttfamily]
 const routes: Routes = [
     {path: 'test', component: VirtualGuitarComponent, pathMatch: 'full'},
@@ -173,7 +175,7 @@ export class Scale {
 \end{lstlisting}
 
 
-TheoryApiService wykorzystuje zmienn¹ œrodowiskow¹ API\_URL pod któr¹ przechowywany jest adres API, dziêki czemu mo¿na modyfikowaæ adres API bez ingerencji w kod. Zastosowanie zmiennych œrodowiskowych jest szczególnie istotne kiedy dochodzi do dystrybucji aplikacji -- adresy API mog¹ siê zmieniaæ i nie powinno to powodowaæ potrzeby aktualizacji aplikacji. Przyk³adowe zapytanie do API z wykorzystaniem zmiennej œrodowiskowej mo¿na zobaczyæ na listingu \ref{lst:TheoryApiService}. 
+TheoryApiService wykorzystuje zmienn¹ œrodowiskow¹ API\_URL pod któr¹ przechowywany jest adres API, dziêki czemu mo¿na modyfikowaæ adres API bez ingerencji w kod. Zastosowanie zmiennych œrodowiskowych jest szczególnie istotne kiedy dochodzi do dystrybucji aplikacji - adresy API mog¹ siê zmieniaæ i nie powinno to powodowaæ potrzeby aktualizacji aplikacji. Przyk³adowe zapytanie do API z wykorzystaniem zmiennej œrodowiskowej mo¿na zobaczyæ na listingu \ref{lst:TheoryApiService}. 
 
 \begin{lstlisting}[caption={Metoda klasy TheoryApiService wysy³aj¹ca zapytanie o dŸwiêki akordu do API}, label={lst:TheoryApiService}, language=JavaScript, basicstyle=\footnotesize\ttfamily]
 getChord(rootNote: string, name: string): Observable<Chord[]> {
@@ -215,22 +217,22 @@ W aplikacji zosta³y zaimplementowane dwa instrumenty: gitarê akustyczn¹ oraz git
 
 Na ka¿dym z instrumentów po wybraniu zapytania podœwietlaj¹ siê odpowiednie dŸwiêki. Wynik przyk³adowego zapytania mo¿na zobaczyæ na rysunkach \ref{fig:reqNoHov}, \ref{fig:reqHov} i \ref{fig:reqAcoustic}. Wybrano zapytanie o skalê F Natural Major (F-dur). W sk³ad tej skali wchodz¹ dŸwiêki: F,G,A,A\#,C,D,E i te dŸwiêki s¹ zaznaczone kolorem czerwonym. 
 
-Jeœli u¿ytkownika interesuj¹ tylko dŸwiêki nale¿¹ce do wybranego zapytania, mo¿e on wy³¹czyæ wyœwietlanie pozosta³ych dŸwiêków przyciskaj¹c guzik ``show notes on hover'' -- powoduje on ukrycie wszystkich dŸwiêków, które nie nale¿¹ do aktualnego zapytania i wyœwietlanie ich dopiero po najechaniu kursorem. 
+Jeœli u¿ytkownika interesuj¹ tylko dŸwiêki nale¿¹ce do wybranego zapytania, mo¿e on wy³¹czyæ wyœwietlanie pozosta³ych dŸwiêków przyciskaj¹c guzik ``show notes on hover'' - powoduje on ukrycie wszystkich dŸwiêków, które nie nale¿¹ do aktualnego zapytania i wyœwietlanie ich dopiero po najechaniu kursorem. 
 
 
 Klikniêcie na dowolny dŸwiêk powoduje odtworzenie jego próbki dŸwiêkowej. Za odtwarzanie dŸwiêków odpowiada serwis AudioPlayerService. Klasa ta definiuje œcie¿ki do próbek dŸwiêkowych danego instrumentu oraz posiada metodê pozwalaj¹c¹ na odtworzenie dŸwiêku po stronie klienta. 
 \begin{lstlisting}[caption={Metoda odtwrzaj¹ca zadany dŸwiêk}, label={lst:playNote}, language=JavaScript]
-playNote(guitar_string:string, note:string, volume:number)
-{
-    let audio = new Audio();
-    //change format, file path can't contain '#' symbol
-    if(note.length > 1 && note[1] == '#')
-        note = note[0] + 's' + note.substring(2);
-    audio.src = this.samplesDirectory + guitar_string + "/" + note + ".wav";
-    audio.volume = volume
-    audio.load();
-    audio.play();
-}
+	 playNote(guitar_string:string, note:string, volume:number)
+		{
+			let audio = new Audio();
+			//change format, file path can't contain '#' symbol
+			if(note.length > 1 && note[1] == '#')
+				note = note[0] + 's' + note.substring(2);
+			audio.src = this.samplesDirectory + guitar_string + "/" + note + ".wav";
+			audio.volume = volume
+			audio.load();
+			audio.play();
+		}
 	\end{lstlisting}
 
 Nagrania próbowano pozyskaæ z serwisów oferuj¹cych darmowe próbki oraz gotowych paczek, jednak nie uda³o siê znaleŸæ pe³nego, darmowego zestawu, który mo¿na by³oby wykorzystaæ w ramach aplikacji, wiêc zdecydowano siê na w³asnorêczne nagranie gitar w domowych warunkach. 
@@ -281,7 +283,7 @@ Na stronie jest równie¿ guzik reset, który zeruje wynik u¿ytkownika oraz losuje 
 
 
 \subsection{Quiz}
-Ten komponent jest zale¿ny od serwisu TheoryApiService. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu -- najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. 
+Ten komponent jest zale¿ny od serwisu TheoryApiService. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu - najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. 
 
 Zaimplementowane pytania polegaj¹ na rozpoznawaniu losowo wybieranych akordów po buduj¹cych je dŸwiêkach, ³atwo jednak rozwin¹æ go dodatkowe pytania dodaj¹c do list np. interwa³y.
 
@@ -310,14 +312,14 @@ getChord()
 
 \begin{figure}[h]
 	 \centering
-	 \includegraphics[width=0.6\textwidth]{rys05/quiz1.png}
+	 \includegraphics[width=0.8\textwidth]{rys05/quiz1.png}
 	 \caption{Pocz¹tkowy stan komponentu treningu s³uchu}
 	\label{fig:quiz1}
 \end{figure}
 
 \begin{figure}[h]
 	 \centering
-	 \includegraphics[width=0.6\textwidth]{rys05/quiz2.png}
+	 \includegraphics[width=0.8\textwidth]{rys05/quiz2.png}
 	 \caption{Stan komponentu treningu s³uchu po udzieleniu poprawnej odpowiedzi}
 	\label{fig:quiz2}
 \end{figure}
@@ -326,13 +328,14 @@ getChord()
 
 \subsection{Lighthouse}
 Wtyczka lighthouse pozwala na przetestowanie aplikacji webowych bior¹c pod uwagê charakterystyczne dla nich cechy, takie jak czas do za³adowania czy optymalizacja pod k¹tem wyszukiwania strony przez silniki wyszukiwania. 
-\begin{figure}[h]
+
+\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.4\textwidth]{rys05/lighthouse.png}
+			\includegraphics[width=0.7\textwidth]{rys05/lighthouse.png}
 			\caption{Wyniki testu Lighthouse}
 			\label{fig:lighthouse}
 \end{figure}
 
-Aplikacja przesz³a testy z dobrymi wynikami. Jednym ze znalezionych przez wtyczkê problemów okaza³a siê optymalizacja pod k¹tem silników wyszukiwania -- w celu poprawy nale¿a³oby przede wszystkim zwiêkszyæ iloœæ metadanych opisuj¹cych stronê. 
+Aplikacja przesz³a testy z dobrymi wynikami. Jednym ze znalezionych przez wtyczkê problemów okaza³a siê optymalizacja pod k¹tem silników wyszukiwania - w celu poprawy nale¿a³oby przede wszystkim zwiêkszyæ iloœæ metadanych opisuj¹cych stronê. 
 
-Kolejnym problemem jest wydajnoœæ aplikacji -- tutaj informacja o wyniku <90 jest du¿o bardziej niepokoj¹ca, poniewa¿ wydajnoœæ bezpoœrednio wp³ywa na odczucia u¿ytkownika. W celu poprawienia wydajnoœci nale¿a³oby przede wszystkim przeanalizowaæ kod pod k¹tem funkcji, które mog¹ opóŸniaæ ³adowanie elementów strony. Nale¿y jednak pamiêtaæ, ¿e podczas testów zarówno frontend, backend jak i aplikacja testowa by³y uruchomione na tej samej maszynie, co mo¿e znacz¹co wp³ywaæ na wyniki testów wydajnoœciowych.
+Kolejnym problemem jest wydajnoœæ aplikacji - tutaj informacja o wyniku <90 jest du¿o bardziej niepokoj¹ca, poniewa¿ wydajnoœæ bezpoœrednio wp³ywa na odczucia u¿ytkownika. W celu poprawienia wydajnoœci nale¿a³oby przede wszystkim przeanalizowaæ kod pod k¹tem funkcji, które mog¹ opóŸniaæ ³adowanie elementów strony. Nale¿y jednak pamiêtaæ, ¿e podczas testów zarówno frontend, backend jak i aplikacja testowa by³y uruchomione na tej samej maszynie, co mo¿e znacz¹co wp³ywaæ na wyniki testów wydajnoœciowych.
