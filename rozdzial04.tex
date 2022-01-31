@@ -2,10 +2,11 @@
 
 \section{Architektura systemu}
 W aplikacja zbudowanych na bazie REST API komunikacja pomiêdzy aplikacj¹ frontendow¹ i~backendow¹ odbywa siê w sposób przedstawiony na rysunku \ref{fig:restArchitecture}. Aplikacja kliencka wysy³a ¿¹dania protoko³em HTTP pod opowiedni adres URL, a w odpowiedzi otrzymuje dane zserializowane do formatu XML b¹dŸ JSON (przy czym format JSON jest obecnie bardziej preferowany). 
-\begin{figure}[h]
+\begin{figure}[H]
  \centering
  %\includegraphics[width=\textwidth]{rys04/RestArchi.png} % TO DO: rysunek jest chroniony (© Copyright AltexSoft 2022), nie wolno z niego korzystaæ, chyba ¿e siê ma zgodê autora.
-\includegraphics[scale=1.5]{rys04/restapi}
+ % DONE: u¿yto rysunku dodanego przez promotora, poprawiono literówkê
+\includegraphics[width=\textwidth]{rys04/restapi.png}
  \caption{Architektura komunikacji w systemie opartym na REST API}
  \label{fig:restArchitecture}
 \end{figure}
@@ -26,7 +27,7 @@ Korzystaj¹c z mo¿liwoœci oferowanych przez framework Angular zdecydowano siê roz
 
 Ka¿d¹ podstronê mo¿na zbudowaæ z odpowiednio dobranych i po³¹czonych ze sob¹ komponentów. Ten sam komponent mo¿na wykorzystaæ w kilku miejscach (na stronie lub na wielu ró¿nych podstronach). Takie podejœcie pozwala na generowanie wielu podobnych podstron poprzez zamianê pojedynczych komponentów. 
 Pozwala te¿ na wielokrotne u¿ywanie tego samego kodu (ten sam komponent mo¿na wykorzystaæ w kilku miejscach na stronie lub na wielu ró¿nych podstronach). 
-\begin{figure}[h]
+\begin{figure}[H]
  \centering
  \includegraphics[scale=1.6]{rys04/podstrona}
  \caption{Schemat podstrony z wirtualnym instrumentem z wyró¿nieniem komponentów i zale¿noœci miêdzy nimi}
