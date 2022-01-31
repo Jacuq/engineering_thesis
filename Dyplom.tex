@@ -777,7 +777,7 @@ SPECJALNOŒÆ: & \@specjalnosc\\
 
 %\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}}
 
-
+\usepackage{pdfpages}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Metadane dokumentu 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -827,7 +827,7 @@ SPECJALNOŒÆ: & \@specjalnosc\\
 
 %\frontmatter
 \pdfbookmark[0]{Tytu³}{Tytul.1}
-\maketitle
+\includepdf{tytulowa_ze_strony_wit.pdf}
 \clearpage
 %\chapterstyle{noNumbered}
 \include{streszczenie} 
