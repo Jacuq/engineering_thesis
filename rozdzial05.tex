@@ -16,6 +16,7 @@ Endpointy deklarowane s¹ w sposób typowy dla frameworka Flask, czyli poprzez dek
 Elementy œcie¿ki zapisane jako \texttt{<name>} to parametry œcie¿ki -- zmienne, które s¹ póŸniej wykorzystywane w celu uszczegó³awiania zapytania. W g³ównym endpoincie API, przedstawionym na listingu \ref{lst:Endpoint}, œcie¿ka opisana jest trzema parametrami, z których ka¿dy coraz bardziej zawê¿a zapytanie. Pocz¹tkowo obszar poszukiwania odpowiedzi jest okreœlany przez \texttt{obj\_type} -- wybierana jest jedna 3 kategorii: skala, interwa³ lub akord. Nastêpnie podawana jest nuta g³ówna, a na koñcu nazwa obiektu. 
 
 % TO DO: czy tutaj wciêcia s¹ poprawne? Zwykle s¹ to 4 spacje, a tutaj jest kilka tabulatorów!!!
+% DONE: tabulotory s¹ ustawione na szerokoœæ 4 spacji, dla pewnoœci zmieni³em jeden z listingów kodu i efekt by³ taki sam
 \begin{lstlisting}[caption={G³ówny endpoint stworzonego API}, label={lst:Endpoint}, language=Python, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 @theory_api.route("/<obj_type>/<root>/<name>", methods=["GET"])
 def get_obj(root: str, name: str, obj_type: str) -> flask.Response:
@@ -39,7 +40,7 @@ def get_obj(root: str, name: str, obj_type: str) -> flask.Response:
     # obj type was correct, but interval wasn't found - wrong interval in request
     if obj is None:
         return wrong_request(f"Incorrect {obj_type} name")
-
+        
     # all went smooth - return requested sound
     return jsonify(obj)
 \end{lstlisting}
@@ -54,7 +55,7 @@ W celu obliczania dŸwiêków wykorzystano nastêpuj¹ce za³o¿enia:
 	 \item odleg³oœæ miêdzy pó³tonami wynosi 1 jednostkê.
 \end{itemize}
 
-Korzystaj¹c z takich za³o¿eñ wszystkie akordy, skale i interwa³y opisano za pomoc¹ odleg³oœci od poprzeniego dŸwiêku. Pierwszy dŸwiêk to zawsze nuta g³ówna, drugi dŸwiêk opisany jest odleg³oœci¹ od nuty g³ównej, trzeci dŸwiêk odleg³oœci¹ od drugiego dŸwiêku itd. 
+Korzystaj¹c z takich za³o¿eñ wszystkie akordy, skale i interwa³y opisano za pomoc¹ odleg³oœci od poprzedniego dŸwiêku. Pierwszy dŸwiêk to zawsze nuta g³ówna, drugi dŸwiêk opisany jest odleg³oœci¹ od nuty g³ównej, trzeci dŸwiêk odleg³oœci¹ od drugiego dŸwiêku itd. 
 
 
 \begin{lstlisting}[caption={Wzorce opisuj¹ce przyk³adowe akordy}, label={lst:chordsPatterns}, language=Python, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
@@ -99,7 +100,7 @@ def find_chord(root: str, chord_name: str) -> list:
 Po zaimplementowaniu ca³oœci aplikacji, zauwa¿ono, ¿e obliczenia s¹ na tyle niewymagaj¹ce, ¿e mog³yby byæ wykonywane po stronie frontendu zamiast dodatkowego API. Warto jednak zauwa¿yæ, ¿e API mo¿na ³atwo rozwin¹æ o dodatkowe funkcjonalnoœci, takie jak np. po³¹czenie z baz¹ danych, co mog³oby okazaæ siê przydatne w wypadku rozwoju aplikacji o konta u¿ytkowników. 
 
 \section{Implementacja Frontendu}
-Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowanych w Angularze. Program podzielony jest na fragmenty zwane komponentami oraz serwisami. Ka¿dy komponent oraz ka¿dy serwis jest przechowywany w osobnym folderze. Katalog assests zawiera zasoby wykorzystywane w aplikacji, takie jak dŸwiêki czy obrazki. Oprócz komponentów stworzonych przez u¿ytkownika wykorzystywane s¹ równie¿ pliki wygenerowane za pomoc¹ Angular CLI znajduj¹ce siê w katalogu g³ównym: 
+Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowanych w Angularze. Program podzielony jest na fragmenty zwane komponentami oraz serwisami. Ka¿dy komponent oraz ka¿dy serwis jest przechowywany w osobnym folderze. Katalog \texttt{assests} zawiera zasoby wykorzystywane w aplikacji, takie jak dŸwiêki czy obrazki. Oprócz komponentów stworzonych przez u¿ytkownika wykorzystywane s¹ równie¿ pliki wygenerowane za pomoc¹ Angular CLI znajduj¹ce siê w katalogu g³ównym: 
 	\begin{itemize}
 	 \item \texttt{app-routing.module.ts} -- modu³ pozwalaj¹cy na zarz¹dzanie routingiem wewn¹trz projektu
 	 \item \texttt{app.module.ts} --  g³ówny modu³ aplikacji opisuj¹cy elementy importowane przez aplikacjê oraz deklarowane w niej komponenty i serwisy
@@ -118,11 +119,11 @@ Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowany
 Ka¿dy komponent sk³ada siê z 4 plików:
 \begin{itemize}
 	 \item \texttt{component-name.css} -- plik opisuj¹cy style wykorzystane w obrêbie tego komponentu,
-	 \item \texttt{component-name.html} -- plik opisuj¹cy rozk³ad elementów w danym komponencie. Angular pozwala na wykorzystywanie tam selektorów innych komponentów oraz dodatkowych dyrektyw, takich jak np. ngIf czy ngFor,
+	 \item \texttt{component-name.html} -- plik opisuj¹cy rozk³ad elementów w danym komponencie. Angular pozwala na wykorzystywanie tam selektorów innych komponentów oraz dodatkowych dyrektyw, takich jak np. \texttt{ngIf} czy \texttt{ngFor},
 	 \item \texttt{component-name.ts} -- plik zawieraj¹cy konstruktor komponentu oraz skrypty napisane przez u¿ytkownika dla danego komponentu,
 	 \item \texttt{component-name.spec.ts} -- plik zawieraj¹cy testy jednostkowe komponentu.
 \end{itemize}
-Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: service-name.ts oraz service-name.spec.ts. Pe³ni¹ one takie same role jak w wypadku komponentów -- pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe.
+Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: \texttt{service-name.ts} oraz \texttt{service-name.spec.ts}. Pe³ni¹ one takie same role jak w wypadku komponentów -- pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe.
 
 \begin{figure}[H]
 	 \centering
@@ -138,15 +139,16 @@ To na tê stronê przekierowywany jest u¿ytkownik jeœli próbuje dostaæ siê na niei
 \begin{figure}[h]
 	 \centering
 	 \includegraphics[width=0.8\textwidth]{rys05/homepage.png} % TO DO: powtórzony podpis pod rysunkiem, proszê poprawiæ
-	 \caption{Katalogi \texttt{audio-player} oraz \texttt{guitar-page} pokazuj¹ schemat plików odpowiednio serwisu i komponentu}
+	 \caption{Strona g³ówna aplikacji wraz z widocznym paskiem nawigacji} % DONE: zmieniono podpis na poprawny
 	 \label{fig:homepage}
 \end{figure}
 
 
 \subsection{Nawigacja}
 % TO DO: przypominam o regu³ach stosowania czcionki maszynowej (nazwy plików, kod Ÿród³owy, nazwy klas itp.). Proszê poprawiæ.
-Do nawigacji podczas korzystania z aplikacji s³u¿y pasek nawigacji umieszczony na górze strony. Ka¿dy z guzików jest odnoœnikiem do odpowiednich podstron. Próba przejœcia na podstrony, które nie s¹ wymienione na pasku nawigacji skutkuje przekierowaniem stronê g³ówn¹. Implementacja nawigacji opiera siê na wykorzystaniu modu³u routing zawaratego w Angularze. W pliku \texttt{app-routing.module.ts} zdefiniowano wszystkie œcie¿ki obs³ugiwane przez aplikacjê. Mo¿na je zobaczyæ na listingu \ref{lst:routing}. szczególnie warto zwróciæ uwagê na ostatni wpis w tablicy. Wpis path: '**' to tzw.\ dzika karta (ang.~\emph{wildcard route}) -- œcie¿ka, która jest wykorzystywana, kiedy u¿ytkownik próbuje dostaæ siê na dowoln¹ podstronê, która nie zosta³a opisana w tablicy przed wyst¹pieniem tego wpisu. Ze wzglêdu na sposób dzia³ania routingu, wa¿ne, aby dzika karta by³a na koñcu tablicy: podczas szukania œcie¿ki porównywana jest podana œcie¿ka i kolejne wartoœci pola ``path'' w tablicy Routes. Porównanie dowolnej œcie¿ki z symbolem '**' zawsze zwraca wartoœæ prawda, wiêc umieszczenie tego symbolu jako wczeœniejszego wpisu, zablokowa³oby dostêp do œcie¿ek zadeklarowanych póŸniej. 
-\begin{lstlisting}[caption={Œcie¿ki zdefiniowane w aplikacji}, label={lst:routing}, language=JavaScript, basicstyle=\footnotesize\ttfamily]
+% DONE: Poprawiono (mam nadziejê, ¿e wszêdzie)
+Do nawigacji podczas korzystania z aplikacji s³u¿y pasek nawigacji umieszczony na górze strony. Ka¿dy z guzików jest odnoœnikiem do odpowiednich podstron. Próba przejœcia na podstrony, które nie s¹ wymienione na pasku nawigacji skutkuje przekierowaniem stronê g³ówn¹. Implementacja nawigacji opiera siê na wykorzystaniu modu³u \texttt{routing} zawaratego w Angularze. W pliku \texttt{app-routing.module.ts} zdefiniowano wszystkie œcie¿ki obs³ugiwane przez aplikacjê. Mo¿na je zobaczyæ na listingu \ref{lst:routing}. Szczególnie warto zwróciæ uwagê na ostatni wpis w tablicy. Wpis path: '**' to tzw.\ dzika karta (ang.~\emph{wildcard route}) -- œcie¿ka, która jest wykorzystywana, kiedy u¿ytkownik próbuje dostaæ siê na dowoln¹ podstronê, która nie zosta³a opisana w tablicy przed wyst¹pieniem tego wpisu. Ze wzglêdu na sposób dzia³ania routingu, wa¿ne, aby dzika karta by³a na koñcu tablicy: podczas szukania œcie¿ki porównywana jest podana œcie¿ka i kolejne wartoœci pola ``path'' w tablicy \texttt{Routes}. Porównanie dowolnej œcie¿ki z symbolem '**' zawsze zwraca wartoœæ prawda, wiêc umieszczenie tego symbolu jako wczeœniejszego wpisu, zablokowa³oby dostêp do œcie¿ek zadeklarowanych póŸniej. 
+\begin{lstlisting}[caption={Œcie¿ki zdefiniowane w aplikacji}, label={lst:routing}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 const routes: Routes = [
     {path: 'test', component: VirtualGuitarComponent, pathMatch: 'full'},
     {path: 'api', component: ApiRequestSelectorComponent, pathMatch: 'full'},
@@ -160,10 +162,10 @@ const routes: Routes = [
 
 
 \subsection{Komunikacja z API}
-W celu komunikacji z API zaimplementowano serwis TheoryApiService oraz modele danych odpowiadaj¹ce tym z API, czyli klasy: Chord, Interval oraz Scale. Klasê Scale przedstawiono na listingu \ref{lst:TheoryModel}. Serwis s³u¿y do wysy³ania zapytañ HTTP na zadany adres i rzutuje otrzymane dane na rz¹dany typ. 
+W celu komunikacji z API zaimplementowano serwis \texttt{TheoryApiService} oraz modele danych odpowiadaj¹ce tym z API, czyli klasy: \texttt{Chord}, \texttt{Interval} oraz \texttt{Scale}. Klasê \texttt{Scale} przedstawiono na listingu \ref{lst:TheoryModel}. Serwis s³u¿y do wysy³ania zapytañ HTTP na zadany adres i rzutuje otrzymane dane na rz¹dany typ. 
 
 
-\begin{lstlisting}[caption={Klasa Scale wykorzystywana do zapytañ i przechowywania danych o skalach}, label={lst:TheoryModel}, language=JavaScript, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[caption={Klasa \texttt{Scale} wykorzystywana do zapytañ i przechowywania danych o skalach}, label={lst:TheoryModel}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 export class Scale {
     constructor(
         public name: string,
@@ -173,9 +175,9 @@ export class Scale {
 \end{lstlisting}
 
 
-TheoryApiService wykorzystuje zmienn¹ œrodowiskow¹ API\_URL pod któr¹ przechowywany jest adres API, dziêki czemu mo¿na modyfikowaæ adres API bez ingerencji w kod. Zastosowanie zmiennych œrodowiskowych jest szczególnie istotne kiedy dochodzi do dystrybucji aplikacji -- adresy API mog¹ siê zmieniaæ i nie powinno to powodowaæ potrzeby aktualizacji aplikacji. Przyk³adowe zapytanie do API z wykorzystaniem zmiennej œrodowiskowej mo¿na zobaczyæ na listingu \ref{lst:TheoryApiService}. 
+\texttt{TheoryApiService} wykorzystuje zmienn¹ œrodowiskow¹ \texttt{API\_URL} pod któr¹ przechowywany jest adres API, dziêki czemu mo¿na modyfikowaæ adres API bez ingerencji w kod. Zastosowanie zmiennych œrodowiskowych jest szczególnie istotne kiedy dochodzi do dystrybucji aplikacji -- adresy API mog¹ siê zmieniaæ i nie powinno to powodowaæ potrzeby aktualizacji aplikacji. Przyk³adowe zapytanie do API z wykorzystaniem zmiennej œrodowiskowej mo¿na zobaczyæ na listingu \ref{lst:TheoryApiService}. 
 
-\begin{lstlisting}[caption={Metoda klasy TheoryApiService wysy³aj¹ca zapytanie o dŸwiêki akordu do API}, label={lst:TheoryApiService}, language=JavaScript, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[caption={Metoda klasy \texttt{TheoryApiService} wysy³aj¹ca zapytanie o dŸwiêki akordu do API}, label={lst:TheoryApiService}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 getChord(rootNote: string, name: string): Observable<Chord[]> {
     return this.http
     .get<Chord[]>(`${API_URL}/chord/${rootNote}/${name}`).pipe(
@@ -189,9 +191,9 @@ getChord(rootNote: string, name: string): Observable<Chord[]> {
 
 
 
-Takie rozwi¹zanie pozwala na wykorzystywanie tego samego serwisu w wielu komponentach poprzez wstrzykiwanie zale¿noœci. W Angularze proces ten odbywa siê poprzez oznaczenie klasy serwisu dekoratorem Injectable oraz zadeklarowanie odpowiedniej zale¿noœci w konstruktorze komponentu (serwis przekazuje siê jako argument konstruktora i przypisuje do odpowiedniego pola w klasie kompenentu). Przyk³ad wstrzykiwania zale¿noœci mo¿na zobaczyæ na listingu \ref{lst:DependencyInjection}, do kompenentu s¹ tam wstrzykiwane dwie zale¿noœci: TheoryApiService oraz ActivatedRoute. 
+Takie rozwi¹zanie pozwala na wykorzystywanie tego samego serwisu w wielu komponentach poprzez wstrzykiwanie zale¿noœci. W Angularze proces ten odbywa siê poprzez oznaczenie klasy serwisu dekoratorem \texttt{Injectable} oraz zadeklarowanie odpowiedniej zale¿noœci w konstruktorze komponentu (serwis przekazuje siê jako argument konstruktora i przypisuje do odpowiedniego pola w klasie kompenentu). Przyk³ad wstrzykiwania zale¿noœci mo¿na zobaczyæ na listingu \ref{lst:DependencyInjection}, do kompenentu s¹ tam wstrzykiwane dwie zale¿noœci: \texttt{TheoryApiService} oraz \texttt{ActivatedRoute}. 
 
-\begin{lstlisting}[caption={Wstrzykiwanie zale¿noœci do komponentu GuitarPageComponent}, label={lst:DependencyInjection}, language=JavaScript, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[caption={Wstrzykiwanie zale¿noœci do komponentu GuitarPageComponent}, label={lst:DependencyInjection}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 	 constructor(api: TheoryApiService, route: ActivatedRoute) { 
 			this.theoryApi = api;
 			this.route = route;
@@ -218,8 +220,8 @@ Na ka¿dym z instrumentów po wybraniu zapytania podœwietlaj¹ siê odpowiednie dŸwi
 Jeœli u¿ytkownika interesuj¹ tylko dŸwiêki nale¿¹ce do wybranego zapytania, mo¿e on wy³¹czyæ wyœwietlanie pozosta³ych dŸwiêków przyciskaj¹c guzik ``show notes on hover'' -- powoduje on ukrycie wszystkich dŸwiêków, które nie nale¿¹ do aktualnego zapytania i wyœwietlanie ich dopiero po najechaniu kursorem. 
 
 
-Klikniêcie na dowolny dŸwiêk powoduje odtworzenie jego próbki dŸwiêkowej. Za odtwarzanie dŸwiêków odpowiada serwis AudioPlayerService. Klasa ta definiuje œcie¿ki do próbek dŸwiêkowych danego instrumentu oraz posiada metodê pozwalaj¹c¹ na odtworzenie dŸwiêku po stronie klienta. 
-\begin{lstlisting}[caption={Metoda odtwrzaj¹ca zadany dŸwiêk}, label={lst:playNote}, language=JavaScript]
+Klikniêcie na dowolny dŸwiêk powoduje odtworzenie jego próbki dŸwiêkowej. Za odtwarzanie dŸwiêków odpowiada serwis \texttt{AudioPlayerService}. Klasa ta definiuje œcie¿ki do próbek dŸwiêkowych danego instrumentu oraz posiada metodê pozwalaj¹c¹ na odtworzenie dŸwiêku po stronie klienta. 
+\begin{lstlisting}[caption={Metoda odtwrzaj¹ca zadany dŸwiêk}, label={lst:playNote}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 playNote(guitar_string:string, note:string, volume:number)
 {
     let audio = new Audio();
@@ -258,7 +260,7 @@ Nagrania próbowano pozyskaæ z serwisów oferuj¹cych darmowe próbki oraz gotowych 
 
 
 \subsection{Trening s³uchu}
-Podstrona s³u¿¹ca do treningu ucha muzycznego to kolejny komponent wykorzystuj¹cy AudioService poprzez wstrzykiwanie zale¿noœci. 
+Podstrona s³u¿¹ca do treningu ucha muzycznego to kolejny komponent wykorzystuj¹cy \texttt{AudioService} poprzez wstrzykiwanie zale¿noœci. 
  
 Æwiczenie polega na rozpoznawaniu odtwarzanego dŸwiêku ze s³uchu. U¿ytkownik mo¿e u¿yæ przycisku ``Play sound'' aby odtworzyæ próbkê. Guzik jest wieloktrotengo u¿ytku. Po ods³uchaniu próbki, u¿ytkownik wybiera jeden z dŸwiêków z listy rozwijanej i zatwierdza wybór guzikiem ``Check answer''. W wypadku udzielenia poprawnej odpowiedzi zwiêksza siê liczba punktów, a w wypadku z³ej, liczba punktów jest ustawiana na 0. W obu wypadkach losowany jest nowy dŸwiêk, aby u¿ytkownik móg³ kontynuowaæ æwiczenie. 
 
@@ -281,11 +283,11 @@ Na stronie jest równie¿ guzik reset, który zeruje wynik u¿ytkownika oraz losuje 
 
 
 \subsection{Quiz}
-Ten komponent jest zale¿ny od serwisu TheoryApiService. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu -- najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. 
+Ten komponent jest zale¿ny od serwisu \texttt{TheoryApiService}. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu -- najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. 
 
 Zaimplementowane pytania polegaj¹ na rozpoznawaniu losowo wybieranych akordów po buduj¹cych je dŸwiêkach, ³atwo jednak rozwin¹æ go dodatkowe pytania dodaj¹c do list np. interwa³y.
 
-\begin{lstlisting}[caption={Metoda generuj¹ca losowy akord}, label={lst:rngChord}, language=JavaScript]
+\begin{lstlisting}[caption={Metoda generuj¹ca losowy akord}, label={lst:rngChord}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 getChord()
 {
     let chordName = this.chordsNames[Math.floor(Math.random() * this.chordsNames.length)];
