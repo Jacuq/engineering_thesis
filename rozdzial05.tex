@@ -162,8 +162,7 @@ const routes: Routes = [
 
 
 \subsection{Komunikacja z API}
-W celu komunikacji z API zaimplementowano serwis \texttt{TheoryApiService} oraz modele danych odpowiadaj¹ce tym z API, czyli klasy: \texttt{Chord}, \texttt{Interval} oraz \texttt{Scale}. Klasê \texttt{Scale} przedstawiono na listingu \ref{lst:TheoryModel}. Serwis s³u¿y do wysy³ania zapytañ HTTP na zadany adres i rzutuje otrzymane dane na rz¹dany typ. 
-
+W celu komunikacji z API zaimplementowano serwis \texttt{TheoryApiService} oraz modele danych odpowiadaj¹ce tym z API, czyli klasy: \texttt{Chord}, \texttt{Interval} oraz \texttt{Scale} (patrz listing~\ref{lst:TheoryModel}). Serwis s³u¿y do wysy³ania zapytañ HTTP na zadany adres i rzutuje otrzymane dane na ¿¹dany typ. 
 
 \begin{lstlisting}[caption={Klasa \texttt{Scale} wykorzystywana do zapytañ i przechowywania danych o skalach}, label={lst:TheoryModel}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 export class Scale {
@@ -191,9 +190,9 @@ getChord(rootNote: string, name: string): Observable<Chord[]> {
 
 
 
-Takie rozwi¹zanie pozwala na wykorzystywanie tego samego serwisu w wielu komponentach poprzez wstrzykiwanie zale¿noœci. W Angularze proces ten odbywa siê poprzez oznaczenie klasy serwisu dekoratorem \texttt{Injectable} oraz zadeklarowanie odpowiedniej zale¿noœci w konstruktorze komponentu (serwis przekazuje siê jako argument konstruktora i przypisuje do odpowiedniego pola w klasie kompenentu). Przyk³ad wstrzykiwania zale¿noœci mo¿na zobaczyæ na listingu \ref{lst:DependencyInjection}, do kompenentu s¹ tam wstrzykiwane dwie zale¿noœci: \texttt{TheoryApiService} oraz \texttt{ActivatedRoute}. 
+Takie rozwi¹zanie pozwala na wykorzystywanie tego samego serwisu w wielu komponentach poprzez wstrzykiwanie zale¿noœci. W Angularze proces ten odbywa siê poprzez oznaczenie klasy serwisu dekoratorem \texttt{Injectable} oraz zadeklarowanie odpowiedniej zale¿noœci w konstruktorze komponentu (serwis przekazuje siê jako argument konstruktora i przypisuje do odpowiedniego pola w klasie kompenentu). Przyk³ad wstrzykiwania zale¿noœci mo¿na zobaczyæ na listingu \ref{lst:DependencyInjection}, do komponentu s¹ tam wstrzykiwane dwie zale¿noœci: \texttt{TheoryApiService} oraz \texttt{ActivatedRoute}. 
 
-\begin{lstlisting}[caption={Wstrzykiwanie zale¿noœci do komponentu GuitarPageComponent}, label={lst:DependencyInjection}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
+\begin{lstlisting}[caption={Wstrzykiwanie zale¿noœci do komponentu \texttt{GuitarPageComponent}}, label={lst:DependencyInjection}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 	 constructor(api: TheoryApiService, route: ActivatedRoute) { 
 			this.theoryApi = api;
 			this.route = route;
@@ -202,8 +201,9 @@ Takie rozwi¹zanie pozwala na wykorzystywanie tego samego serwisu w wielu kompone
 
 
 \subsection{Podstrony z wirtualnymi instrumentami}
-Podstrony z wirtualnymi instrumentami zosta³y stworzone poprzez po³¹czenie ze sob¹ mniejszych komponentów: selektora zapytañ, suwaka reguluj¹cego g³oœnoœæ oraz wirtualnego instrumentu. 
+Podstrony z wirtualnymi instrumentami stworzono poprzez po³¹czenie ze sob¹ mniejszych komponentów: selektora zapytañ, suwaka reguluj¹cego g³oœnoœæ oraz wirtualnego instrumentu. 
 
+W aplikacji zaimplementowano dwa instrumenty: gitarê akustyczn¹ oraz gitarê basow¹ (patrz rysunek~\ref{fig:noReqNoHov}). Bazuj¹ one na tym samym komponencie, poniewa¿ na poziomie abstrakcji, na którym operowano podczas implementacji ró¿nica miêdzy nimi to tylko liczba strun.  
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{rys05/no_request_no_hover.png}
@@ -212,16 +212,32 @@ Podstrony z wirtualnymi instrumentami zosta³y stworzone poprzez po³¹czenie ze so
 \end{figure}
 
 
-W aplikacji zosta³y zaimplementowane dwa instrumenty: gitarê akustyczn¹ oraz gitarê basow¹. Bazuj¹ one na tym samym komponencie, poniewa¿ na poziomie abstrakcji, na którym operowano podczas implementacji róznica miêdzy nimi to tylko liczba strun.  
-
-
 Na ka¿dym z instrumentów po wybraniu zapytania podœwietlaj¹ siê odpowiednie dŸwiêki. Wynik przyk³adowego zapytania mo¿na zobaczyæ na rysunkach \ref{fig:reqNoHov}, \ref{fig:reqHov} i \ref{fig:reqAcoustic}. Wybrano zapytanie o skalê F Natural Major (F-dur). W sk³ad tej skali wchodz¹ dŸwiêki: F,G,A,A\#,C,D,E i te dŸwiêki s¹ zaznaczone kolorem czerwonym. 
+\begin{figure}[h]   
+	\centering
+	\includegraphics[width=0.8\textwidth]{rys05/request_no_hover.png}
+	\caption{Widok strony z gitar¹ basow¹ po wykonanu zapytania}
+	\label{fig:reqNoHov}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{rys05/request_hover.png}
+	\caption{Widok strony z gitar¹ basow¹ po wykonaniu zapytania i prze³¹czeniu opcji \texttt{hover}}
+	\label{fig:reqHov}
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{rys05/request_acoustic.png}
+	\caption{Widok strony z gitar¹ akustyczn¹ po wykonaniu zapytania}
+	\label{fig:reqAcoustic}
+\end{figure}
+
 
 Jeœli u¿ytkownika interesuj¹ tylko dŸwiêki nale¿¹ce do wybranego zapytania, mo¿e on wy³¹czyæ wyœwietlanie pozosta³ych dŸwiêków przyciskaj¹c guzik ``show notes on hover'' -- powoduje on ukrycie wszystkich dŸwiêków, które nie nale¿¹ do aktualnego zapytania i wyœwietlanie ich dopiero po najechaniu kursorem. 
 
 
-Klikniêcie na dowolny dŸwiêk powoduje odtworzenie jego próbki dŸwiêkowej. Za odtwarzanie dŸwiêków odpowiada serwis \texttt{AudioPlayerService}. Klasa ta definiuje œcie¿ki do próbek dŸwiêkowych danego instrumentu oraz posiada metodê pozwalaj¹c¹ na odtworzenie dŸwiêku po stronie klienta. 
-\begin{lstlisting}[caption={Metoda odtwrzaj¹ca zadany dŸwiêk}, label={lst:playNote}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
+Klikniêcie na dowolny dŸwiêk powoduje odtworzenie jego próbki dŸwiêkowej. Za odtwarzanie dŸwiêków odpowiada serwis \texttt{AudioPlayerService}. Klasa ta definiuje œcie¿ki do próbek dŸwiêkowych danego instrumentu oraz posiada metodê pozwalaj¹c¹ na odtworzenie dŸwiêku po stronie klienta (patrz listing~\ref{lst:playNote}).
+\begin{lstlisting}[caption={Metoda odtwarzaj¹ca zadany dŸwiêk}, label={lst:playNote}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 playNote(guitar_string:string, note:string, volume:number)
 {
     let audio = new Audio();
@@ -236,37 +252,17 @@ playNote(guitar_string:string, note:string, volume:number)
 	\end{lstlisting}
 
 Nagrania próbowano pozyskaæ z serwisów oferuj¹cych darmowe próbki oraz gotowych paczek, jednak nie uda³o siê znaleŸæ pe³nego, darmowego zestawu, który mo¿na by³oby wykorzystaæ w ramach aplikacji, wiêc zdecydowano siê na w³asnorêczne nagranie gitar w domowych warunkach. 
-\begin{figure}[h]   
-	\centering
-	\includegraphics[width=0.8\textwidth]{rys05/request_no_hover.png}
-	\caption{Widok strony z gitar¹ basow¹ po wykonanu zapytania}
-	\label{fig:reqNoHov}
-\end{figure}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{rys05/request_hover.png}
-	\caption{Widok strony z gitar¹ basow¹ po wykonaniu zapytania i prze³¹czeniu opcji hover}
-	\label{fig:reqHov}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{rys05/request_acoustic.png}
-	\caption{Widok strony z gitar¹ akustyczn¹ po wykonaniu zapytania}
-	\label{fig:reqAcoustic}
-\end{figure}
 
 
 
 \subsection{Trening s³uchu}
 Podstrona s³u¿¹ca do treningu ucha muzycznego to kolejny komponent wykorzystuj¹cy \texttt{AudioService} poprzez wstrzykiwanie zale¿noœci. 
  
-Æwiczenie polega na rozpoznawaniu odtwarzanego dŸwiêku ze s³uchu. U¿ytkownik mo¿e u¿yæ przycisku ``Play sound'' aby odtworzyæ próbkê. Guzik jest wieloktrotengo u¿ytku. Po ods³uchaniu próbki, u¿ytkownik wybiera jeden z dŸwiêków z listy rozwijanej i zatwierdza wybór guzikiem ``Check answer''. W wypadku udzielenia poprawnej odpowiedzi zwiêksza siê liczba punktów, a w wypadku z³ej, liczba punktów jest ustawiana na 0. W obu wypadkach losowany jest nowy dŸwiêk, aby u¿ytkownik móg³ kontynuowaæ æwiczenie. 
+Æwiczenie polega na rozpoznawaniu odtwarzanego dŸwiêku ze s³uchu. U¿ytkownik mo¿e u¿yæ przycisku ``Play sound'' aby odtworzyæ próbkê. Guzik jest wielokrotnego u¿ytku. Po ods³uchaniu próbki, u¿ytkownik wybiera jeden z dŸwiêków z listy rozwijanej i zatwierdza wybór guzikiem ``Check answer''. W wypadku udzielenia poprawnej odpowiedzi zwiêksza siê liczba punktów, a w wypadku z³ej, liczba punktów jest ustawiana na 0. W obu wypadkach losowany jest nowy dŸwiêk, aby u¿ytkownik móg³ kontynuowaæ æwiczenie. 
 
 Na stronie jest równie¿ guzik reset, który zeruje wynik u¿ytkownika oraz losuje now¹ próbkê dŸwiêkow¹.
-
-
+% TO DO: brak referencji w teœkcie do rysunków. Proszê uzupe³niæ !!!
 \begin{figure}[h]
 	 \centering
 	 \includegraphics[width=0.8\textwidth]{rys05/ear_training1.png}
@@ -309,7 +305,7 @@ getChord()
 }
 \end{lstlisting}
 
-
+% TO DO: brak referencji w teœkcie do rysunków. Proszê uzupe³niæ !!!
 \begin{figure}[h]
 	 \centering
 	 \includegraphics[width=0.6\textwidth]{rys05/quiz1.png}
