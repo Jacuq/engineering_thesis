@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { ApiRequestSelectorComponent } from './api-request-selector.component';
 
@@ -8,7 +9,8 @@ describe('ApiRequestSelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ApiRequestSelectorComponent ]
+      declarations: [ ApiRequestSelectorComponent ],
+      imports: [FormsModule]
     })
     .compileComponents();
   });

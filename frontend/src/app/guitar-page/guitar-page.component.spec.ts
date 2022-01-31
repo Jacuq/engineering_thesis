@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { TheoryApiService } from '../theory-api/theory-api.service';
 
 import { GuitarPageComponent } from './guitar-page.component';
 
@@ -8,7 +12,9 @@ describe('GuitarPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GuitarPageComponent ]
+      declarations: [ GuitarPageComponent],
+      imports: [HttpClientModule, FormsModule, ActivatedRoute],
+      providers: [TheoryApiService]
     })
     .compileComponents();
   });

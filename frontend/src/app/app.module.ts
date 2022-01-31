@@ -47,7 +47,9 @@ import { TheoryQuizComponent } from './theory-quiz/theory-quiz.component';
     MatButtonModule,
     FormsModule
   ],
-  providers: [TheoryApiService],
+  providers: [
+    {provide: TheoryApiService,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

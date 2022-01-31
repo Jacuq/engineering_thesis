@@ -14,13 +14,13 @@ export class AudioPlayerService {
   playNote(guitar_string:string, note:string, volume:number)
   {
     let audio = new Audio();
+    //change format, file path can't contain '#' symbol
     if(note.length > 1 && note[1] == '#')
       note = note[0] + 's' + note.substring(2);
     audio.src = this.samplesDirectory + guitar_string + "/" + note + ".wav";
     audio.volume = volume
     audio.load();
     audio.play();
-    return true;
   }
 
   setType(sample_type:string)

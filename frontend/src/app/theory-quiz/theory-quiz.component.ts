@@ -58,7 +58,6 @@ export class TheoryQuizComponent implements OnInit {
     }
     let split: number = chordName.indexOf(' ');
     chordName = chordName.toLowerCase();
-    //TODO: substr deprecated name = name.substr(0, 0+split) + '_' + name.substr(split+1, length-split+1); albo cos takiego
     chordName = chordName.substr(0, split) + '_' + chordName.substr(split+1);
     console.log(noteName, chordName)
     this.theoryApi.getChord(noteName, chordName).subscribe(data => {

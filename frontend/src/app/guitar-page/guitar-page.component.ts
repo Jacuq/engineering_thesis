@@ -1,9 +1,6 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiRequestSelectorComponent } from '../api-request-selector/api-request-selector.component';
-import { AudioPlayerService } from '../audio-player/audio-player.service';
 import { TheoryApiService } from '../theory-api/theory-api.service';
-import { VirtualGuitarComponent } from '../virtual-guitar/virtual-guitar.component';
 
 @Component({
   selector: 'app-guitar-page',
@@ -15,8 +12,7 @@ export class GuitarPageComponent implements OnInit {
   virtGuitar;
   apiRequestSelector;
   theoryApi;
-  audio;
-  
+
   route: ActivatedRoute;
   guitarType: string;
   currentScale = null;
@@ -26,7 +22,7 @@ export class GuitarPageComponent implements OnInit {
 
   //guitar: VirtualGuitarComponent,
   //selector: ApiRequestSelectorComponent 
-  constructor(api: TheoryApiService, audio: AudioPlayerService, route: ActivatedRoute) { 
+  constructor(api: TheoryApiService, route: ActivatedRoute) { 
     this.theoryApi = api;
     this.route = route;
   }
