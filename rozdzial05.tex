@@ -55,7 +55,7 @@ W celu obliczania dŸwiêków wykorzystano nastêpuj¹ce za³o¿enia:
 	 \item odleg³oœæ miêdzy pó³tonami wynosi 1 jednostkê.
 \end{itemize}
 
-Korzystaj¹c z takich za³o¿eñ wszystkie akordy, skale i interwa³y opisano za pomoc¹ odleg³oœci od poprzedniego dŸwiêku. Pierwszy dŸwiêk to zawsze nuta g³ówna, drugi dŸwiêk opisany jest odleg³oœci¹ od nuty g³ównej, trzeci dŸwiêk odleg³oœci¹ od drugiego dŸwiêku itd. 
+Korzystaj¹c z takich za³o¿eñ wszystkie akordy, skale i interwa³y opisano za pomoc¹ odleg³oœci od poprzedniego dŸwiêku. Pierwszy dŸwiêk to zawsze nuta g³ówna, drugi dŸwiêk opisany jest odleg³oœci¹ od nuty g³ównej, trzeci dŸwiêk odleg³oœci¹ od drugiego dŸwiêku itd. Realizacja tych wzorców widoczna jest na listingu \ref{key:chordsPatterns}.
 
 
 \begin{lstlisting}[caption={Wzorce opisuj¹ce przyk³adowe akordy}, label={lst:chordsPatterns}, language=Python, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
@@ -100,7 +100,7 @@ def find_chord(root: str, chord_name: str) -> list:
 Po zaimplementowaniu ca³oœci aplikacji, zauwa¿ono, ¿e obliczenia s¹ na tyle niewymagaj¹ce, ¿e mog³yby byæ wykonywane po stronie frontendu zamiast dodatkowego API. Warto jednak zauwa¿yæ, ¿e API mo¿na ³atwo rozwin¹æ o dodatkowe funkcjonalnoœci, takie jak np. po³¹czenie z baz¹ danych, co mog³oby okazaæ siê przydatne w wypadku rozwoju aplikacji o konta u¿ytkowników. 
 
 \section{Implementacja Frontendu}
-Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowanych w Angularze. Program podzielony jest na fragmenty zwane komponentami oraz serwisami. Ka¿dy komponent oraz ka¿dy serwis jest przechowywany w osobnym folderze. Katalog \texttt{assests} zawiera zasoby wykorzystywane w aplikacji, takie jak dŸwiêki czy obrazki. Oprócz komponentów stworzonych przez u¿ytkownika wykorzystywane s¹ równie¿ pliki wygenerowane za pomoc¹ Angular CLI znajduj¹ce siê w katalogu g³ównym: 
+Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowanych w Angularze. Program podzielony jest na fragmenty zwane komponentami oraz serwisami. Ka¿dy komponent oraz ka¿dy serwis jest przechowywany w osobnym folderze. Szczegó³owy schemat projektu jest widoczny na rysunku \ref{fig:schemat_FE}. Katalog \texttt{assests} zawiera zasoby wykorzystywane w aplikacji, takie jak dŸwiêki czy obrazki. Oprócz komponentów stworzonych przez u¿ytkownika wykorzystywane s¹ równie¿ pliki wygenerowane za pomoc¹ Angular CLI znajduj¹ce siê w katalogu g³ównym: 
 	\begin{itemize}
 	 \item \texttt{app-routing.module.ts} -- modu³ pozwalaj¹cy na zarz¹dzanie routingiem wewn¹trz projektu
 	 \item \texttt{app.module.ts} --  g³ówny modu³ aplikacji opisuj¹cy elementy importowane przez aplikacjê oraz deklarowane w niej komponenty i serwisy
@@ -123,8 +123,8 @@ Ka¿dy komponent sk³ada siê z 4 plików:
 	 \item \texttt{component-name.ts} -- plik zawieraj¹cy konstruktor komponentu oraz skrypty napisane przez u¿ytkownika dla danego komponentu,
 	 \item \texttt{component-name.spec.ts} -- plik zawieraj¹cy testy jednostkowe komponentu.
 \end{itemize}
-Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: \texttt{service-name.ts} oraz \texttt{service-name.spec.ts}. Pe³ni¹ one takie same role jak w wypadku komponentów -- pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe.
-
+Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: \texttt{service-name.ts} oraz \texttt{service-name.spec.ts}. Pe³ni¹ one takie same role jak w wypadku komponentów -- pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe. 
+Zawartoœæ przyk³adowych katalogów z serisem i komponentem mo¿na zobaczyæ na rysunku \ref{fig:scfig:schemat_FE2}.
 \begin{figure}[H]
 	 \centering
 	 \includegraphics[width=0.4\textwidth]{rys05/schemat_FE2.png}
@@ -135,7 +135,7 @@ Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: \texttt{service-name.ts} or
 \subsection{Strona g³ówna}
 Na stronie g³ównej wyœwietlony jest panel z krótkim tekstem o aplikacji oraz jej autorze. 
 Na górze strony widoczny jest pasek nawigacji, który pozwala na przejœcie do wszystkich funkcjonalnoœci aplikacji. 
-To na tê stronê przekierowywany jest u¿ytkownik jeœli próbuje dostaæ siê na nieistniej¹c¹ podstronê. 
+To na tê stronê przekierowywany jest u¿ytkownik jeœli próbuje dostaæ siê na nieistniej¹c¹ podstronê. Widok strony g³ównej przedstawiono na rysunku \ref{fig:homepage}.
 \begin{figure}[h]
 	 \centering
 	 \includegraphics[width=0.8\textwidth]{rys05/homepage.png} % TO DO: powtórzony podpis pod rysunkiem, proszê poprawiæ
@@ -261,27 +261,27 @@ Podstrona s³u¿¹ca do treningu ucha muzycznego to kolejny komponent wykorzystuj¹c
  
 Æwiczenie polega na rozpoznawaniu odtwarzanego dŸwiêku ze s³uchu. U¿ytkownik mo¿e u¿yæ przycisku ``Play sound'' aby odtworzyæ próbkê. Guzik jest wielokrotnego u¿ytku. Po ods³uchaniu próbki, u¿ytkownik wybiera jeden z dŸwiêków z listy rozwijanej i zatwierdza wybór guzikiem ``Check answer''. W wypadku udzielenia poprawnej odpowiedzi zwiêksza siê liczba punktów, a w wypadku z³ej, liczba punktów jest ustawiana na 0. W obu wypadkach losowany jest nowy dŸwiêk, aby u¿ytkownik móg³ kontynuowaæ æwiczenie. 
 
-Na stronie jest równie¿ guzik reset, który zeruje wynik u¿ytkownika oraz losuje now¹ próbkê dŸwiêkow¹.
+Na stronie jest równie¿ guzik reset, który zeruje wynik u¿ytkownika oraz losuje now¹ próbkê dŸwiêkow¹. Opisany komponent przedstawiono na rysunku \ref{fig:earTraining}.
 % TO DO: brak referencji w teœkcie do rysunków. Proszê uzupe³niæ !!!
-\begin{figure}[h]
-	 \centering
-	 \includegraphics[width=0.8\textwidth]{rys05/ear_training1.png}
-	 \caption{Pocz¹tkowy stan komponentu treningu s³uchu}
-	\label{fig:ear1}
+% DONE: dodano referencjê
+\begin{figure}[htb]
+  \centering
+	\begin{tabular}{@{}ll@{}}
+	a) & b) \\
+  \vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/ear_training1}}}} & 
+	\vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/ear_training2}}}}
+	\end{tabular}
+  \caption{Stan komponentu \texttt{EarTraining}: a) po za³adowaniu, b) po udzieleniu dobrej odpowiedzi}
+  \label{fig:earTraining}
 \end{figure}
 
-\begin{figure}[h]
-	 \centering
-	 \includegraphics[width=0.8\textwidth]{rys05/ear_training2.png}
-	 \caption{Stan komponentu treningu s³uchu po udzieleniu poprawnej odpowiedzi}
-	\label{fig:ear2}
-\end{figure}
+
 
 
 \subsection{Quiz}
-Ten komponent jest zale¿ny od serwisu \texttt{TheoryApiService}. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu -- najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. 
+Ten komponent jest zale¿ny od serwisu \texttt{TheoryApiService}. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu -- najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. Widok quizu mo¿na zobaczyæ na rysunku \ref {fig:quiz}. 
 
-Zaimplementowane pytania polegaj¹ na rozpoznawaniu losowo wybieranych akordów po buduj¹cych je dŸwiêkach, ³atwo jednak rozwin¹æ go dodatkowe pytania dodaj¹c do list np. interwa³y.
+Zaimplementowane pytania polegaj¹ na rozpoznawaniu losowo wybieranych akordów po buduj¹cych je dŸwiêkach, ³atwo jednak rozwin¹æ go dodatkowe pytania dodaj¹c do list np. interwa³y. Kod odpowiadaj¹cy za losowy wybór akordów przedstawiono na listingu \ref{lst:rngChord}.
 
 \begin{lstlisting}[caption={Metoda generuj¹ca losowy akord}, label={lst:rngChord}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 getChord()
@@ -291,39 +291,35 @@ getChord()
     this.currentChord = chordName;
     this.currentNote = noteName;
     this.notesInChord = null;
-    
+    // change '#' to 'S' so it can be send to API ('#' is a problematic char).
     if (noteName.includes('#') ){
         noteName = noteName[0] + 'S';
     }
     let split: number = chordName.indexOf(' ');
     chordName = chordName.toLowerCase();
     chordName = chordName.substr(0, split) + '_' + chordName.substr(split+1);
-    console.log(noteName, chordName)
     this.theoryApi.getChord(noteName, chordName).subscribe(data => {
         this.notesInChord = data;
     });	
 }
 \end{lstlisting}
 
-% TO DO: brak referencji w teœkcie do rysunków. Proszê uzupe³niæ !!!
-\begin{figure}[h]
-	 \centering
-	 \includegraphics[width=0.6\textwidth]{rys05/quiz1.png}
-	 \caption{Pocz¹tkowy stan komponentu treningu s³uchu}
-	\label{fig:quiz1}
+\begin{figure}[htb]
+  \centering
+	\begin{tabular}{@{}ll@{}}
+	a) & b) \\
+  \vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/quiz1}}}} & 
+	\vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/quiz2}}}}
+	\end{tabular}
+  \caption{Stan komponentu z quizem teoretycznym: a) po za³adowaniu, b) po udzieleniu dobrej odpowiedzi}
+  \label{fig:quiz}
 \end{figure}
 
-\begin{figure}[h]
-	 \centering
-	 \includegraphics[width=0.6\textwidth]{rys05/quiz2.png}
-	 \caption{Stan komponentu treningu s³uchu po udzieleniu poprawnej odpowiedzi}
-	\label{fig:quiz2}
-\end{figure}
 
 \section{Testowanie aplikacji}
 
 \subsection{Lighthouse}
-Wtyczka lighthouse pozwala na przetestowanie aplikacji webowych bior¹c pod uwagê charakterystyczne dla nich cechy, takie jak czas do za³adowania czy optymalizacja pod k¹tem wyszukiwania strony przez silniki wyszukiwania. 
+Wtyczka lighthouse pozwala na przetestowanie aplikacji webowych bior¹c pod uwagê charakterystyczne dla nich cechy, takie jak czas do za³adowania czy optymalizacja pod k¹tem wyszukiwania strony przez silniki wyszukiwania. Wyniki testowania aplikacji za pomoc¹ tej wtyczki s¹ widoczne na rysunku \ref{fig:lighthouse}. 
 \begin{figure}[h]
 			\centering
 			\includegraphics[width=0.4\textwidth]{rys05/lighthouse.png}
