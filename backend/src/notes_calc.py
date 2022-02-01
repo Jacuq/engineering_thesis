@@ -18,7 +18,7 @@ def sound_from_val(val: int) -> str:
 def find_scale(root: str, scale_name: str) -> list:
     curr_sound = notes_mapping.get(root)
     pattern = scales_patterns.get(scale_name)
-    if pattern is None:
+    if pattern is None or curr_sound is None:
         return None
     scale = [root]
     for step in pattern:
@@ -31,7 +31,7 @@ def find_scale(root: str, scale_name: str) -> list:
 def find_chord(root: str, chord_name: str) -> list:
     curr_sound = notes_mapping.get(root)
     pattern = chords_patterns.get(chord_name)
-    if pattern is None:
+    if pattern is None or curr_sound is None:
         return None
     chord = [root]
     for step in pattern:
@@ -70,8 +70,11 @@ def find_interval(root: str, interval_name: str):
         return None
 
     # calculate interval position and cast to note
-    interval_val = interval + notes_mapping[root]
-    return sound_from_val(interval_val % 12)
+    try:
+        interval_val = interval + notes_mapping[root]
+        return sound_from_val(interval_val % 12)
+    except KeyError as e:
+        return None
 
 
 def get_random(obj_type: str):
