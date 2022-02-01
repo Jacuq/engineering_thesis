@@ -55,7 +55,7 @@ W celu obliczania dŸwiêków wykorzystano nastêpuj¹ce za³o¿enia:
 	 \item odleg³oœæ miêdzy pó³tonami wynosi 1 jednostkê.
 \end{itemize}
 
-Korzystaj¹c z takich za³o¿eñ wszystkie akordy, skale i interwa³y opisano za pomoc¹ odleg³oœci od poprzedniego dŸwiêku. Pierwszy dŸwiêk to zawsze nuta g³ówna, drugi dŸwiêk opisany jest odleg³oœci¹ od nuty g³ównej, trzeci dŸwiêk odleg³oœci¹ od drugiego dŸwiêku itd. Realizacja tych wzorców widoczna jest na listingu \ref{key:chordsPatterns}.
+Korzystaj¹c z takich za³o¿eñ wszystkie akordy, skale i interwa³y opisano za pomoc¹ odleg³oœci od poprzedniego dŸwiêku. Pierwszy dŸwiêk to zawsze nuta g³ówna, drugi dŸwiêk opisany jest odleg³oœci¹ od nuty g³ównej, trzeci dŸwiêk odleg³oœci¹ od drugiego dŸwiêku itd. Realizacja tych wzorców widoczna jest na listingu \ref{lst:chordsPatterns}.
 
 
 \begin{lstlisting}[caption={Wzorce opisuj¹ce przyk³adowe akordy}, label={lst:chordsPatterns}, language=Python, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
@@ -99,38 +99,38 @@ def find_chord(root: str, chord_name: str) -> list:
 \section{Obserwacje i uwagi}
 Po zaimplementowaniu ca³oœci aplikacji, zauwa¿ono, ¿e obliczenia s¹ na tyle niewymagaj¹ce, ¿e mog³yby byæ wykonywane po stronie frontendu zamiast dodatkowego API. Warto jednak zauwa¿yæ, ¿e API mo¿na ³atwo rozwin¹æ o dodatkowe funkcjonalnoœci, takie jak np. po³¹czenie z baz¹ danych, co mog³oby okazaæ siê przydatne w wypadku rozwoju aplikacji o konta u¿ytkowników. 
 
+% TO DO: Proszê posklejaæ u¿ywaj¹c ~ wszystkie samotne literki na koñcach linii 
 \section{Implementacja Frontendu}
-Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowanych w Angularze. Program podzielony jest na fragmenty zwane komponentami oraz serwisami. Ka¿dy komponent oraz ka¿dy serwis jest przechowywany w osobnym folderze. Szczegó³owy schemat projektu jest widoczny na rysunku \ref{fig:schemat_FE}. Katalog \texttt{assests} zawiera zasoby wykorzystywane w aplikacji, takie jak dŸwiêki czy obrazki. Oprócz komponentów stworzonych przez u¿ytkownika wykorzystywane s¹ równie¿ pliki wygenerowane za pomoc¹ Angular CLI znajduj¹ce siê w katalogu g³ównym: 
+Schemat projektu aplikacji frontendowej jest typowy dla aplikacji implementowanych w Angularze. Program podzielony jest na fragmenty zwane komponentami oraz serwisami. Ka¿dy komponent oraz ka¿dy serwis jest przechowywany w osobnym folderze. Szczegó³owy schemat projektu jest widoczny na rysunku \ref{fig:schemat_FE}a. Katalog \texttt{assests} zawiera zasoby wykorzystywane w~aplikacji, takie jak dŸwiêki czy obrazki. Oprócz komponentów stworzonych przez u¿ytkownika wykorzystywane s¹ równie¿ pliki wygenerowane za pomoc¹ Angular CLI znajduj¹ce siê w~katalogu g³ównym: 
 	\begin{itemize}
-	 \item \texttt{app-routing.module.ts} -- modu³ pozwalaj¹cy na zarz¹dzanie routingiem wewn¹trz projektu
-	 \item \texttt{app.module.ts} --  g³ówny modu³ aplikacji opisuj¹cy elementy importowane przez aplikacjê oraz deklarowane w niej komponenty i serwisy
-	 \item \texttt{app.*} -- pozosta³e pliki kompenentu g³ównego
-	 \item \texttt{environment.prod.ts} -- plik zawieraj¹ce zmienne œrodowiskowe dla œrodowiska produkcyjnego
-	 \item \texttt{environment.ts} -- zmienne œrodowiskowe do wykorzystania podczas tworzenia i testowania aplikacji
+	 \item \texttt{app-routing.module.ts} -- modu³ pozwalaj¹cy na zarz¹dzanie routingiem wewn¹trz projektu,
+	 \item \texttt{app.module.ts} --  g³ówny modu³ aplikacji opisuj¹cy elementy importowane przez aplikacjê oraz deklarowane w niej komponenty i serwisy,
+	 \item \texttt{app.*} -- pozosta³e pliki komponentu g³ównego,
+	 \item \texttt{environment.prod.ts} -- plik zawieraj¹ce zmienne œrodowiskowe dla œrodowiska produkcyjnego,
+	 \item \texttt{environment.ts} -- zmienne œrodowiskowe do wykorzystania podczas tworzenia i testowania aplikacji.
 	\end{itemize}
 
-\begin{figure}[H]
+\begin{figure}[h]
 	 \centering
-	 \includegraphics[width=0.4\textwidth]{rys05/schemat_FE.png}
-	 \caption{Schemat projektu aplikacji Frontendowej}
-	 \label{fig:schemat_FE}
+	\begin{tabular}{@{}ll@{}}
+	a) & b) \\
+  \vtop{\vskip-2ex\hbox{\includegraphics[width=0.40\linewidth]{rys05/schemat_FE.png}}} & 
+	\vtop{\vskip-2ex\hbox{\includegraphics[width=0.36\linewidth]{rys05/schemat_FE2.png}}}
+	\end{tabular}
+  \caption{Schemat projektu aplikacji frontendowej: a) g³ówny folder, b) foldery \texttt{audio-player} oraz \texttt{guitar-page} zawieraj¹ce, odpowiednio, pliki serwisu i komponentu}
+	\label{fig:schemat_FE}
 \end{figure}
 
 Ka¿dy komponent sk³ada siê z 4 plików:
 \begin{itemize}
 	 \item \texttt{component-name.css} -- plik opisuj¹cy style wykorzystane w obrêbie tego komponentu,
-	 \item \texttt{component-name.html} -- plik opisuj¹cy rozk³ad elementów w danym komponencie. Angular pozwala na wykorzystywanie tam selektorów innych komponentów oraz dodatkowych dyrektyw, takich jak np. \texttt{ngIf} czy \texttt{ngFor},
+	 \item \texttt{component-name.html} -- plik opisuj¹cy rozk³ad elementów w danym komponencie. Angular pozwala na wykorzystywanie tam selektorów innych komponentów oraz dodatkowych dyrektyw, takich jak np.\ \texttt{ngIf} czy \texttt{ngFor},
 	 \item \texttt{component-name.ts} -- plik zawieraj¹cy konstruktor komponentu oraz skrypty napisane przez u¿ytkownika dla danego komponentu,
 	 \item \texttt{component-name.spec.ts} -- plik zawieraj¹cy testy jednostkowe komponentu.
 \end{itemize}
 Serwisy natomiast sk³adaj¹ siê domyœlnie z 2 plików: \texttt{service-name.ts} oraz \texttt{service-name.spec.ts}. Pe³ni¹ one takie same role jak w wypadku komponentów -- pierwszy z nich zawiera klasê serwisu, natomiast drugi jej testy jednostkowe. 
-Zawartoœæ przyk³adowych katalogów z serisem i komponentem mo¿na zobaczyæ na rysunku \ref{fig:scfig:schemat_FE2}.
-\begin{figure}[H]
-	 \centering
-	 \includegraphics[width=0.4\textwidth]{rys05/schemat_FE2.png}
-	 \caption{Katalogi \texttt{audio-player} oraz \texttt{guitar-page} pokazuj¹ schemat plików odpowiednio serwisu i komponentu}
-	 \label{fig:schemat_FE2}
-\end{figure}
+Zawartoœæ przyk³adowych katalogów z serwisem i komponentem mo¿na zobaczyæ na rysunku \ref{fig:schemat_FE}b.
+
 
 \subsection{Strona g³ówna}
 Na stronie g³ównej wyœwietlony jest panel z krótkim tekstem o aplikacji oraz jej autorze. 
@@ -138,7 +138,7 @@ Na górze strony widoczny jest pasek nawigacji, który pozwala na przejœcie do wsz
 To na tê stronê przekierowywany jest u¿ytkownik jeœli próbuje dostaæ siê na nieistniej¹c¹ podstronê. Widok strony g³ównej przedstawiono na rysunku \ref{fig:homepage}.
 \begin{figure}[h]
 	 \centering
-	 \includegraphics[width=0.8\textwidth]{rys05/homepage.png} % TO DO: powtórzony podpis pod rysunkiem, proszê poprawiæ
+	 \includegraphics[width=\textwidth]{rys05/homepage.png} % TO DO: powtórzony podpis pod rysunkiem, proszê poprawiæ
 	 \caption{Strona g³ówna aplikacji wraz z widocznym paskiem nawigacji} % DONE: zmieniono podpis na poprawny
 	 \label{fig:homepage}
 \end{figure}
@@ -147,7 +147,7 @@ To na tê stronê przekierowywany jest u¿ytkownik jeœli próbuje dostaæ siê na niei
 \subsection{Nawigacja}
 % TO DO: przypominam o regu³ach stosowania czcionki maszynowej (nazwy plików, kod Ÿród³owy, nazwy klas itp.). Proszê poprawiæ.
 % DONE: Poprawiono (mam nadziejê, ¿e wszêdzie)
-Do nawigacji podczas korzystania z aplikacji s³u¿y pasek nawigacji umieszczony na górze strony. Ka¿dy z guzików jest odnoœnikiem do odpowiednich podstron. Próba przejœcia na podstrony, które nie s¹ wymienione na pasku nawigacji skutkuje przekierowaniem stronê g³ówn¹. Implementacja nawigacji opiera siê na wykorzystaniu modu³u \texttt{routing} zawaratego w Angularze. W pliku \texttt{app-routing.module.ts} zdefiniowano wszystkie œcie¿ki obs³ugiwane przez aplikacjê. Mo¿na je zobaczyæ na listingu \ref{lst:routing}. Szczególnie warto zwróciæ uwagê na ostatni wpis w tablicy. Wpis path: '**' to tzw.\ dzika karta (ang.~\emph{wildcard route}) -- œcie¿ka, która jest wykorzystywana, kiedy u¿ytkownik próbuje dostaæ siê na dowoln¹ podstronê, która nie zosta³a opisana w tablicy przed wyst¹pieniem tego wpisu. Ze wzglêdu na sposób dzia³ania routingu, wa¿ne, aby dzika karta by³a na koñcu tablicy: podczas szukania œcie¿ki porównywana jest podana œcie¿ka i kolejne wartoœci pola ``path'' w tablicy \texttt{Routes}. Porównanie dowolnej œcie¿ki z symbolem '**' zawsze zwraca wartoœæ prawda, wiêc umieszczenie tego symbolu jako wczeœniejszego wpisu, zablokowa³oby dostêp do œcie¿ek zadeklarowanych póŸniej. 
+Do nawigacji podczas korzystania z aplikacji s³u¿y pasek nawigacji umieszczony na górze strony. Ka¿dy z guzików jest odnoœnikiem do odpowiednich podstron. Próba przejœcia na podstrony, które nie s¹ wymienione na pasku nawigacji skutkuje przekierowaniem stronê g³ówn¹. Implementacja nawigacji opiera siê na wykorzystaniu modu³u \texttt{routing} zawartego w Angularze. W pliku \texttt{app-routing.module.ts} zdefiniowano wszystkie œcie¿ki obs³ugiwane przez aplikacjê. Mo¿na je zobaczyæ na listingu \ref{lst:routing}. Szczególnie warto zwróciæ uwagê na ostatni wpis w tablicy. Wpis \texttt{path: '**'} to tzw.\ dzika karta (ang.~\emph{wildcard route}) -- œcie¿ka, która jest wykorzystywana, kiedy u¿ytkownik próbuje dostaæ siê na dowoln¹ podstronê, która nie zosta³a opisana w tablicy przed wyst¹pieniem tego wpisu. Ze wzglêdu na sposób dzia³ania routingu, wa¿ne, aby dzika karta by³a na koñcu tablicy: podczas szukania œcie¿ki porównywana jest podana œcie¿ka i kolejne wartoœci pola \texttt{path} w tablicy \texttt{Routes}. Porównanie dowolnej œcie¿ki z symbolem \texttt{**} zawsze zwraca wartoœæ prawda, wiêc umieszczenie tego symbolu jako wczeœniejszego wpisu, zablokowa³oby dostêp do œcie¿ek zadeklarowanych póŸniej. 
 \begin{lstlisting}[caption={Œcie¿ki zdefiniowane w aplikacji}, label={lst:routing}, language=JavaScript, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 const routes: Routes = [
     {path: 'test', component: VirtualGuitarComponent, pathMatch: 'full'},
@@ -206,7 +206,7 @@ Podstrony z wirtualnymi instrumentami stworzono poprzez po³¹czenie ze sob¹ mniej
 W aplikacji zaimplementowano dwa instrumenty: gitarê akustyczn¹ oraz gitarê basow¹ (patrz rysunek~\ref{fig:noReqNoHov}). Bazuj¹ one na tym samym komponencie, poniewa¿ na poziomie abstrakcji, na którym operowano podczas implementacji ró¿nica miêdzy nimi to tylko liczba strun.  
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{rys05/no_request_no_hover.png}
+	\includegraphics[width=0.82\textwidth]{rys05/no_request_no_hover.png}
 	\caption{Widok strony z gitar¹ basow¹ przed wykonaniem zapytania}
 	\label{fig:noReqNoHov}
 \end{figure}
@@ -215,19 +215,19 @@ W aplikacji zaimplementowano dwa instrumenty: gitarê akustyczn¹ oraz gitarê baso
 Na ka¿dym z instrumentów po wybraniu zapytania podœwietlaj¹ siê odpowiednie dŸwiêki. Wynik przyk³adowego zapytania mo¿na zobaczyæ na rysunkach \ref{fig:reqNoHov}, \ref{fig:reqHov} i \ref{fig:reqAcoustic}. Wybrano zapytanie o skalê F Natural Major (F-dur). W sk³ad tej skali wchodz¹ dŸwiêki: F,G,A,A\#,C,D,E i te dŸwiêki s¹ zaznaczone kolorem czerwonym. 
 \begin{figure}[h]   
 	\centering
-	\includegraphics[width=0.8\textwidth]{rys05/request_no_hover.png}
+	\includegraphics[width=0.82\textwidth]{rys05/request_no_hover.png}
 	\caption{Widok strony z gitar¹ basow¹ po wykonanu zapytania}
 	\label{fig:reqNoHov}
 \end{figure}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{rys05/request_hover.png}
+	\includegraphics[width=0.82\textwidth]{rys05/request_hover.png}
 	\caption{Widok strony z gitar¹ basow¹ po wykonaniu zapytania i prze³¹czeniu opcji \texttt{hover}}
 	\label{fig:reqHov}
 \end{figure}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{rys05/request_acoustic.png}
+	\includegraphics[width=0.82\textwidth]{rys05/request_acoustic.png}
 	\caption{Widok strony z gitar¹ akustyczn¹ po wykonaniu zapytania}
 	\label{fig:reqAcoustic}
 \end{figure}
@@ -268,8 +268,8 @@ Na stronie jest równie¿ guzik reset, który zeruje wynik u¿ytkownika oraz losuje 
   \centering
 	\begin{tabular}{@{}ll@{}}
 	a) & b) \\
-  \vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/ear_training1}}}} & 
-	\vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/ear_training2}}}}
+  \vtop{\vskip-2ex\hbox{\includegraphics[width=0.48\linewidth]{rys05/ear_training1}}} & 
+	\vtop{\vskip-2ex\hbox{\includegraphics[width=0.48\linewidth]{rys05/ear_training2}}}
 	\end{tabular}
   \caption{Stan komponentu \texttt{EarTraining}: a) po za³adowaniu, b) po udzieleniu dobrej odpowiedzi}
   \label{fig:earTraining}
@@ -279,7 +279,18 @@ Na stronie jest równie¿ guzik reset, który zeruje wynik u¿ytkownika oraz losuje 
 
 
 \subsection{Quiz}
-Ten komponent jest zale¿ny od serwisu \texttt{TheoryApiService}. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu -- najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. Widok quizu mo¿na zobaczyæ na rysunku \ref {fig:quiz}. 
+Ten komponent jest zale¿ny od serwisu \texttt{TheoryApiService}. Podstrona z quizem z wiedzy dotycz¹cej akordów dzia³a podobnie do podstrony z treningiem s³uchu -- najpierw u¿ytkownikowi zadawane jest pytanie, póŸniej wybiera on odpowiedŸ za pomoc¹ list rozwijanych i zatwierdza wybór guzikiem.  Po udzieleniu dobrej odpowiedzi jego wynik jest inkrementowany, a po niepoprawnej wynik jest zerowany. W obu wypadkach po udzieleniu odpowiedzi losowane jest nowe pytanie. Na stronie jest równie¿ guzik reset losuj¹cy nowe pytanie i zeruj¹cy wynik. Widok quizu mo¿na zobaczyæ na rysunku \ref{fig:quiz}. 
+\begin{figure}[htb]
+  \centering
+	\begin{tabular}{@{}ll@{}}
+	a) & b) \\
+  \vtop{\vskip-2ex\hbox{\includegraphics[width=0.46\linewidth]{rys05/quiz1}}} & 
+	\vtop{\vskip-2ex\hbox{\includegraphics[width=0.46\linewidth]{rys05/quiz2}}}
+	\end{tabular}
+  \caption{Stan komponentu z quizem teoretycznym: a) po za³adowaniu, b) po udzieleniu dobrej odpowiedzi}
+  \label{fig:quiz}
+\end{figure}
+
 
 Zaimplementowane pytania polegaj¹ na rozpoznawaniu losowo wybieranych akordów po buduj¹cych je dŸwiêkach, ³atwo jednak rozwin¹æ go dodatkowe pytania dodaj¹c do list np. interwa³y. Kod odpowiadaj¹cy za losowy wybór akordów przedstawiono na listingu \ref{lst:rngChord}.
 
@@ -304,16 +315,6 @@ getChord()
 }
 \end{lstlisting}
 
-\begin{figure}[htb]
-  \centering
-	\begin{tabular}{@{}ll@{}}
-	a) & b) \\
-  \vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/quiz1}}}} & 
-	\vtop{\vskip-2ex\hbox{\fbox{\includegraphics[width=0.5\linewidth]{rys05/quiz2}}}}
-	\end{tabular}
-  \caption{Stan komponentu z quizem teoretycznym: a) po za³adowaniu, b) po udzieleniu dobrej odpowiedzi}
-  \label{fig:quiz}
-\end{figure}
 
 
 \section{Testowanie aplikacji}

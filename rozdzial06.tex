@@ -1,30 +1,24 @@
 \chapter{Podsumowanie}
 
 \section{Zrealizowane cele i za³o¿enia}
-% TO DO: proszê rozwin¹æ opis (to nie prezentacja do pokazania, tylko dokument do przeczytania, wiêc proszê wiêcej opisu zamiast listy wyliczeniowej.
-% DONE: zmieniono listê na opis 
+Celem pracy by³o stworzenie aplikacji wspieraj¹cej samorozwój muzyczny. Aby zrealizowaæ ten cel, dokonano wyboru technologii, które najlepiej zdawa³y siê najodpowiedniejsze do zadania. Przeanalizowano wymagania stawiane aplikacji oraz jej przypadki u¿ycia. Po dok³adniej analizie stworzono projekt aplikacji webowej w oparciu o architekturê REST API. Po wykonaniu projektu, zaimplementowano aplikacjê przy u¿yciu wczeœniej wybranych narzêdzi. Zaimplementowana aplikacja spe³nia wiêkszoœæ za³o¿onych wymagañ oraz implementuje wszystkie zaprezentowane w pracy przypadki u¿ycia. Nie uda³o siê spe³niæ wymogu responsywnoœci strony internetowej -- na ma³ych ekranach aplikacja nie reaguje odpowiednio, interfejs staje siê ma³o przejrzysty i niewygodny. Æwiczenia interaktywne powinny zostaæ rozbudowane - zaimplementowano tylko dwa rodzaje æwiczeñ. ¯adne z nich nie korzysta z mikrofonu, co prawda nie by³o to wymogiem, ale na pewno by³oby to du¿o bardziej anga¿uj¹ce dla u¿ytkownika ni¿ wybór odpowiedzi z listy rozsuwanej.
 
-Celem pracy by³o stworzenie aplikacji wspieraj¹cej samorozwój muzyczny. Aby zrealizowaæ ten cel, dokonano wyboru technologii, które najlepiej zdawa³y siê najodpowieniejsze do zadania. Przeanalizowano wymagania stawiane aplikacji oraz jej przypadki u¿ycia. Po dok³adniej analizie stworzono projekt aplikacji webowej w oparciu o architekturê REST API. Po wykonaniu projektu, zaimplementowano aplikacjê przy u¿yciu wczeœniej wybranych narzêdzi. Zaimplementowana aplikacja spe³nia wiêkszoœæ za³o¿onych wymagañ oraz implementuje wszystkie zaprezentowane w pracy przypadki u¿ycia. Nie uda³o siê spe³niæ wymogu responsywnoœci strony internetowej -- na ma³ych ekranach aplikacja nie reaguje odpowiednio, interfejs staje siê ma³o przejrzysty i niewygodny. Æwiczenia interaktywne powinny zostaæ rozbudowane - zaimplementowano tylko dwa rodzaje æwiczeñ. ¯adne z nich nie korzysta z mikrofonu, co prawda nie by³o to wymogiem, ale na pewno by³oby to du¿o bardziej anga¿uj¹ce dla u¿ytkownika ni¿ wybór odpowiedzi z listy rozsuwanej. 
+% TO DO: dodaæ parê s³ów o licencji, jakiej udzielono na powsta³e oprogramowanie (kod Ÿród³owy umieszczony na p³ycie musi równie¿ zawieraæ informacje o licencji)
 
 \section{Dalszy rozwój aplikacji}
-Aplikacja ma du¿e mo¿liwoœci na dalszy rozwój. Szczególnie warte uwagi pomys³y to: konta u¿ytkowników, dodatkowe instrumenty, dodatkowe æwiczenia, u¿ywanie mikrofonu, lekcje.
+Aplikacja ma du¿e mo¿liwoœci na dalszy rozwój. Szczególnie warte uwagi pomys³y to: u¿ywanie mikrofonu, konta u¿ytkowników, dodatkowe instrumenty, dodatkowe æwiczenia, lekcje. \\
 
-\subsection{Konta u¿ytkowników}
-Do aplikacji mo¿na dodaæ konta u¿ytkowników, które pozwala³aby na zachowywanie wyników z æwiczeñ pomiêdzy sesjami. Maj¹c zapisane wyniki z æwiczeñ mo¿naby nawet stworzyæ tablice wyników. Wraz z dodawaniem kolejnych æwiczeñ konta by³yby coraz bardziej u¿yteczne. Kolejne funkcjonalnoœci równie¿ mog³yby korzystaæ z tej funkcjonalnoœci, np.\ po dodaniu lekcji, konta pozwala³yby zapamiêtaæ lekcje, które u¿ytkownik ju¿ przejrza³.
-
-\subsection{Dodatkowe instrumenty}
-
-Ze wzglêdu na to jak stworzono podstronê z wirtualnym instrumentem i serwis do odtwarzania dŸwiêków stronê ³atwo wzbogaciæ o dodatkowe instrumenty, takie jak np. pianino. Oczywiœcie nie na ka¿dym instrumencie ³atwo zaprezentowaæ graficznie dŸwiêki, wiêc trzebaby rozwa¿yæ odpowiedni dobór instrumentów.
-
-\subsection{Dodatkowe æwiczenia}
-
-Dodatkowe æwiczenia mo¿na implementowaæ jako kolejne podstrony niezale¿nie od reszty treœci strony, wiêc aplikacja jest pod tym wzglêdem aplikacja jest rozszerzalna. Mo¿naby stworzyæ podobny quiz do tego z akordami, ale zawieraj¹cy tylko skale lub zupe³nie inne rodzaje æwiczeñ jak np. wybranie kolejnych dŸwiêków w zadanej skali. 
-
-\subsection{Wykorzystanie mikrofonu}
-
+\noindent\textbf{Wykorzystanie mikrofonu}\newline
 Wykorzystanie mikrofonu otworzy³oby wiele mo¿liwoœci, np.\ æwiczenia w których odpowiedzi¹ jest zagranie odpowiedniego dŸwiêku, interaktywny stroik pokazuj¹cy czy dŸwiêk jest za niski czy za wysoki. 
 
-\subsection{Lekcje}
+\noindent\textbf{Konta u¿ytkowników}\newline
+Do aplikacji mo¿na dodaæ konta u¿ytkowników, które pozwala³aby na zachowywanie wyników z æwiczeñ pomiêdzy sesjami. Maj¹c zapisane wyniki z æwiczeñ da³oby to szansê na stworzenie tablicy wyników. Wraz z dodawaniem kolejnych æwiczeñ informacje z konta by³yby coraz bardziej u¿yteczne. Kolejne funkcje mog³yby  informacji rozszerzaæ pola zastosowañ przechowywanych informacji, np.\ przy koncie mo¿na by³oby zapamiêtywaæ dodane lekcje oraz lekcje, które u¿ytkownik ju¿ przejrza³. 
 
-Warto rozwa¿yæ podstronê która zawiera³aby krótkie lekcje teorii muzyki, które nastêpnie mo¿naby po³¹czyæ z interaktymi æwiczeniami. Tutaj mo¿na by³oby równie¿ wykorzystaæ funkcjonalnoœæ kont po ich implementacji do zapamiêtywania które lekcje u¿ytkownik ju¿ przejrza³, tworzenia notatek czy dyskusji o materiale zawartym w lekcji.
+\noindent\textbf{Dodatkowe instrumenty}\newline
+Ze wzglêdu na to jak stworzono podstronê z wirtualnym instrumentem i serwis do odtwarzania dŸwiêków stronê ³atwo wzbogaciæ o dodatkowe instrumenty, takie jak np.\ pianino. Oczywiœcie nie na ka¿dym instrumencie ³atwo zaprezentowaæ graficznie dŸwiêki, wiêc nale¿a³oby rozwa¿yæ odpowiedni dobór instrumentów.
 
+\noindent\textbf{Dodatkowe æwiczenia}\newline
+Dodatkowe æwiczenia mo¿na implementowaæ jako kolejne podstrony niezale¿nie od reszty treœci strony, wiêc aplikacja jest pod tym wzglêdem aplikacja jest rozszerzalna. Mo¿na by³oby stworzyæ podobny quiz do tego z akordami, ale zawieraj¹cy tylko skale lub zupe³nie inne rodzaje æwiczeñ, jak np.\ wybranie kolejnych dŸwiêków w zadanej skali.
+
+\noindent\textbf{Lekcje}\newline
+Warto rozwa¿yæ przygotowanie podstrony, która zawiera³aby krótkie lekcje teorii muzyki daj¹ce siê powi¹zaæ z interaktywnymi æwiczeniami. Tutaj mo¿na by³oby równie¿ wykorzystaæ funkcjonalnoœæ kont (np.\ do tworzenia i przechowywania notatek czy dyskusji o materiale zawartym w~lekcji).
