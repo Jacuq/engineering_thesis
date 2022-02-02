@@ -320,11 +320,11 @@ getChord()
 \section{Testowanie aplikacji}
 
 \subsection{Testy jednostkowe backendu}
+W ramach implementacji backendu stworzono testy jednostkowe sprawdzaj¹ce poprawnoœæ implementacji klasy \texttt{notes\_calc}. Do implementacji wykorzystano bibliotekê \texttt{pytest} -- jedn¹ z~najpopularniejszych bibliotek do testowania oprogramowania. 
 
-W ramach implementacji backendu stworzono testy jednostkowe sprawdzaj¹ce poprawnoœæ implementacji klasy \texttt{notes\_calc}. Do implementacji wykorzystano bibliotekê \texttt{pytest} -- jedn¹ z najpopularniejszych bibliotek do testowania oprogramowania. \\ Testy zosta³y zaprojektowane w taki sposób, aby zapewniæ odpowiednie dzia³anie funkcji obliczaj¹cych skale, akordy oraz interwa³y, w~ka¿dym z~czterech mo¿liwych przypadków: oba wprowadzone argumenty s¹ poprawne, tylko pierwszy argument jest poprawny, tylko drugi argument jest poprawny oraz oba argumenty s¹ niepoprawne. \\ Testy zosta³y zaimplementowane dla wszystkich funckji licz¹cych: \texttt{find\_chord}, \texttt{find\_scale} oraz \texttt{find\_interval}. 
-Testy sprawdzaj¹ce dzia³anie funkcji dla poprawnych argumentów polegaj¹ na wywo³aniu funkcji z poprawn¹ list¹ argumentów i porównaniu otrzymanego rezultatu z poprawnym. Testy zosta³y przedstawione na listingu \ref{lst:utShouldPass}. \\
-Testy sprawdzaj¹ce zachowanie aplikacji dla niepoprawnych argumentów zosta³y stworzone jako testy parametryczne -- lista parametrów zbudowana jest z~zestawu krotek opisuj¹cych kolejne zestawy argumentów przekazywanych do funkcji. Kod testów parametrycznych mo¿na zobaczyæ na listingu \ref{lst:utShouldNotPass}. 
+Testy zaprojektowano w taki sposób, aby zapewniæ odpowiednie dzia³anie funkcji obliczaj¹cych skale, akordy oraz interwa³y, w~ka¿dym z~czterech mo¿liwych przypadków: oba wprowadzone argumenty s¹ poprawne, tylko pierwszy argument jest poprawny, tylko drugi argument jest poprawny oraz oba argumenty s¹ niepoprawne. Testy zaimplementowano dla wszystkich funkcji licz¹cych: \texttt{find\_chord}, \texttt{find\_scale} oraz \texttt{find\_interval}. 
 
+Testy sprawdzaj¹ce dzia³anie funkcji dla poprawnych argumentów polegaj¹ na wywo³aniu funkcji z poprawn¹ list¹ argumentów i porównaniu otrzymanego rezultatu z~poprawnym. Testy zosta³y przedstawione na listingu \ref{lst:utShouldPass}.
 \begin{lstlisting}[caption={Testy jednostkowe sprawdzaj¹ce poprawnoœæ obliczeñ dla dobrych argumentów}, label={lst:utShouldPass}, language=Python, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 def test_should_get_scale():
     resp = find_scale('C', 'natural_major')
@@ -332,13 +332,11 @@ def test_should_get_scale():
     for n, e in zip(resp, expected):
         assert n == e
 
-
 def test_should_get_chord():
     resp = find_chord('D', 'minor_triad')
     expected = ['D', 'F', 'A']
     for n, e in zip(resp, expected):
         assert n == e
-
 
 def test_should_get_interval():
     resp = find_interval('A#', 'augmented_fifth')
@@ -346,6 +344,7 @@ def test_should_get_interval():
     assert expected == resp
 \end{lstlisting}
 
+Testy sprawdzaj¹ce zachowanie aplikacji dla niepoprawnych argumentów zosta³y stworzone jako testy parametryczne -- lista parametrów zbudowana jest z~zestawu krotek opisuj¹cych kolejne zestawy argumentów przekazywanych do funkcji. Kod testów parametrycznych mo¿na zobaczyæ na listingu \ref{lst:utShouldNotPass}. 
 \begin{lstlisting}[caption={Testy jednostkowe sprawdzaj¹ce poprawnoœæ zachowania aplikacji dla z³ych argumentów}, label={lst:utShouldNotPass}, language=Python, showstringspaces=false, basicstyle=\footnotesize\ttfamily]
 @pytest.mark.parametrize("input", [("Z", "augmented_fifth"), ("A#", "incorrect_name"), ("Z", "incorrect_name")])
 def test_should_not_get_interval(input):
@@ -364,10 +363,9 @@ def test_should_not_get_scale(input):
 \end{lstlisting}
 
 Aplikacja koñczy wszystkie testy jednostkowe z wynikiem pozytywnym, co przedstawiono na rysunku \ref{fig:UTsResult}.
-
-\begin{figure}[H]
+\begin{figure}[ht]
 			\centering
-			\includegraphics[width=\textwidth]{rys05/UTs.png}
+			\includegraphics[width=.9\textwidth]{rys05/UTs.png}
 			\caption{Wyniki testów jednostkowych}
 			\label{fig:UTsResult}
 \end{figure}
